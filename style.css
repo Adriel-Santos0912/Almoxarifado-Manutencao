@@ -1,0 +1,19 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#content {
+    min-height: 70vh; /* Altura mínima da página */
+    padding-bottom: 50px; /* Altura do rodapé */
+}
+
+footer {
+    bottom: 0;
+    left: 0;
+    padding: 10px 0;
+    color: #fff;
+    height: 10%;
+    width: 100%;
+}

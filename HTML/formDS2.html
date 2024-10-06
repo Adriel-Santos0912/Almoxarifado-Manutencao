@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/formStyle.css">
+    <title>DS-2</title>
+</head>
+<body>
+    <h1>Maquina DS-2</h1>
+    <form method="POST" action="../acao.php">
+        <label for="comp">Componente: </label><br>
+        <input type="text" name="comp"><br><br>
+        <label for="qntd">Quantidade: </label><br>
+        <input type="number" name="qntd"><br><br>
+        <input type="hidden" name="item" value="ds2">
+        <input type="submit" value="Enviar"><br><br>
+        <input type="submit" name="data" value="Exibir dados">
+    </form>
+</body>
+</html>
