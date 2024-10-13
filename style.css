@@ -69,3 +69,8 @@ footer {
     transition: all 0.3s linear;
 }
 
+#title{
+    font-family: "Play", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
