@@ -1,8 +1,12 @@
 #h1{
-    width: 100%;
+    width: 90%;
 }
 
 form{
     width: 80%;
     margin: 0 auto;
+}
+
+#card{
+    background-color: black;
 }
