@@ -15,10 +15,6 @@
         <div id="h1" class="d-flex justify-content-center">
             <?php
                 include('reconhecer.php');
-                $selected =    ($item == 'ds2') ? 'DS-2' :
-                                (($item == 'k18') ? 'K-18' :
-                                (($item == 'resistencia') ? 'Resistencia' : 'Undefined'));
-
                 echo "<h1 class='text-white text-center'>Peças " . $selected . "</h1>";
                 $conn->close();
             ?>
@@ -40,14 +36,27 @@
             <?php
                 include('reconhecer.php');
                 
-                $insSQL = "SELECT nome, qntd FROM $item";
+                if($item == 'ds2' || $item == 'k18'){
+                    $insSQL = "SELECT nome, qntd FROM $item";
+                } else if($item == 'resistencia') {
+                    $insSQL = "SELECT ohm, tipo, qntd FROM $item";
+                }
+                
                 $res = $conn->query($insSQL);
             
                 if($res->num_rows > 0){
                     while($row = $res->fetch_assoc()){
                         echo "<tr>";
-                        echo "<td>" . $row['nome'] . "</td>";
-                        echo "<td>" . $row['qntd'] . "</td>";
+                        if($item == 'ds2' || $item == 'k18'){
+                            echo "<td>" . $row['nome'] . "</td>";
+                            echo "<td>" . $row['qntd'] . "</td>";
+                        }
+                        if($item == 'resistencia'){
+                            echo "<td>" . $row['ohm'] . "</td>";
+                            echo "<td>" . $row['tipo'] . "</td>";
+                            echo "<td>" . $row['qntd'] . "</td>";
+                        }
+
                         echo "</tr>";
                     }
                     echo "</tbody></table></main>";
