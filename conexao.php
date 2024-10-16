@@ -8,6 +8,5 @@
 
     if($conn->connect_error){
         die("Falha ao conectar " . $conn->connect_error);
-    }
-    echo 'Versão do PHP: ' . phpversion();  
+    } 
 ?>
