@@ -14,7 +14,6 @@
         </div>
         <div id="h1" class="d-flex justify-content-center">
             <?php
-                include('reconhecer.php');
                 echo "<h1 class='text-white text-center'>Peças " . $selected . "</h1>";
                 $conn->close();
             ?>
@@ -37,9 +36,9 @@
                 include('reconhecer.php');
                 
                 if($item == 'ds2' || $item == 'k18'){
-                    $insSQL = "SELECT nome, qntd FROM $item";
+                    $insSQL = "SELECT id, nome, marca, estq_min, saldo FROM $item";
                 } else if($item == 'resistencia') {
-                    $insSQL = "SELECT ohm, tipo, qntd FROM $item";
+                    $insSQL = "SELECT id, nome, marca, estq_min, saldo FROM $item";
                 }
                 
                 $res = $conn->query($insSQL);
@@ -48,15 +47,19 @@
                     while($row = $res->fetch_assoc()){
                         echo "<tr>";
                         if($item == 'ds2' || $item == 'k18'){
+                            echo "<td>" . sprintf('%03d', $row['id']) . "</td>";
                             echo "<td>" . $row['nome'] . "</td>";
-                            echo "<td>" . $row['qntd'] . "</td>";
+                            echo "<td>" . $row['marca'] . "</td>";
+                            echo "<td>" . $row['estq_min'] . "</td>";
+                            echo "<td>" . $row['saldo'] . "</td>";
                         }
                         if($item == 'resistencia'){
-                            echo "<td>" . $row['ohm'] . "</td>";
-                            echo "<td>" . $row['tipo'] . "</td>";
-                            echo "<td>" . $row['qntd'] . "</td>";
+                            echo "<td>" . sprintf('%03d', $row['id']) . "</td>";
+                            echo "<td>" . $row['nome'] . "</td>";
+                            echo "<td>" . $row['marca'] . "</td>";
+                            echo "<td>" . $row['estq_min'] . "</td>";
+                            echo "<td>" . $row['saldo'] . "</td>";
                         }
-
                         echo "</tr>";
                     }
                     echo "</tbody></table></main>";
