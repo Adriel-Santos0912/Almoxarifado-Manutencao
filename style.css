@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -10,9 +10,18 @@
     --span: #151515;
 }
 
-#content {
-    min-height: 70vh; /* Altura mínima da página */
-    padding-bottom: 50px; /* Altura do rodapé */
+body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    height: 10%;
+}
+
+main {
+    min-height: 80%;
 }
 
 footer {
