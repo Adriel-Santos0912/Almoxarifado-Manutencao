@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/stylecadastro.css">
     <link href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" defer></script>
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.min.js" defer></script>
     <title>Cadastrar Peças</title>
 </head>
 <body class="bg-light">
@@ -19,10 +22,8 @@
 
     </header>
     <main class="d-flex justify-content-center">
-
         <form class="container" method="POST" action="../acao.php">
             <div class="row">
-                
                 <div class="col-12 col-xl-6">
                     <label for="cod">Codigo Da Peça</label> <br>
                     <input class="form-control form-control-lg" type="text" name="cod"><br><br>
@@ -47,24 +48,15 @@
                     <label for="saldo">Saldo da Peça:</label><br>
                     <input class="form-control form-control-lg" type="number" name="saldo"><br><br>
                 </div>                
-
             </div>
 
             <br><br><br>
-
-
             <div id="enviar">
                 <div>
                     <input class="btn btn-info d-flex justify-content-center" type="submit" value="Enviar">
                 </div>
-                
             </div>
-            
-
         </form>
     </main>
-<script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-<script src="../bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
 </body>
 </html>
