@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Almoxarifado Manutenção</title>
 </head>
 <body>
@@ -13,49 +14,47 @@
 
     <main id="content">
         <div class="container">
-            <form class="row d-flex justify-content-between" action="item.php" method="POST">
+            <form class="row d-flex justify-content-between" action="operation.php" method="POST">
 
-                <article class="col-12 col-xl-4 p-3 p-xl=0">
-                    <div class="d-flex justify-content-center">
-                        <div class="card">
+                <article class="col-12 col-xl-4 p-3 p-xl-0 d-flex justify-content-center">
+                    <div class="card">
                             <img src="Img/DS-2 whiteBG.png" class="card-img-top" alt="icone da Máquina-ds2">
                             <div class="card-body">
-                                <h5 class="card-title">- Máquina DS-2</h5>
+                                <h5 class="card-title text-center text-center">Máquina DS-2</h5>
                                 <br>
                                 <!-- botoes -->
                                 <div class="d-block d-flex justify-content-center pb-2">
                                     <input class="btn btn-info" type="submit" value="Acessar" name="btn1"> 
                                 </div>
                                 <div class="d-block d-flex justify-content-center">
-                                    <a href="HTML/cadastro.html" class="btn btn-success btn-lg">Cadastrar Peças</a>
+                                    <input class="btn btn-success btn-lg" type="submit" value="Cadastrar Peças" name="cadastro1"> 
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </article>
     
-                <article class="col-12 col-xl-4 p-3 p-xl=0 d-flex justify-content-center">
+                <article class="col-12 col-xl-4 p-3 p-xl-0 d-flex justify-content-center">
                     <div class="card">
                         <img src="Img/K-18 whiteBG.png" class="card-img-top" alt="icone da Máquina-k18">
                         <div class="card-body">
-                            <h5 class="card-title">- Máquina K-18</h5>
+                            <h5 class="card-title text-center">Máquina K-18</h5>
                             <br>
                             <!-- botoes -->
                             <div class="d-block d-flex justify-content-center pb-2">
                                 <input class="btn btn-info " type="submit" value="Acessar" name="btn2"> 
                             </div>
                             <div class="d-block d-flex justify-content-center">
-                                <a href="HTML/cadastro.html" class="btn btn-success btn-lg">Cadastrar Peças</a>   
+                                <input class="btn btn-success btn-lg" type="submit" value="Cadastrar Peças" name="cadastro2"> 
                             </div>
                         </div>
                     </div>
                 </article>
     
-                <article class="col-12 col-xl-4 p-3 p-xl=0 d-flex justify-content-center">
+                <article class="col-12 col-xl-4 p-3 p-xl-0 d-flex justify-content-center">
                     <div class="card">
                         <img src="Img/Resistencia whiteBG.png" class="card-img-top" alt="icone da Resistencia">
                         <div class="card-body">
-                            <h5 class="card-title">- Resistência</h5>
+                            <h5 class="card-title text-center">Resistência</h5>
                             <br>
                             <!-- botoes -->
                             <div class="d-block d-flex justify-content-center pb-2">
@@ -69,7 +68,7 @@
                 </article>
                 
 
-                <div class="col-12 mt-3 mb-5 d-flex justify-content-center">
+                <div class="col-12 mt-5 mb-5 d-flex justify-content-center">
                     <a href="HTML/controleLaminas.html" class="btn btn-secondary btn-lg">Controle de Lâminas</a>
                 </div>
             </form>

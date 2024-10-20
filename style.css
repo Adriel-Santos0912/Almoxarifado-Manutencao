@@ -31,13 +31,13 @@ main {
     align-items: center;
 }
 
-.card{
-    width: 18rem;
+.card {
+    width: 80%;
     transition-duration: 0.3s;
 }
 
-.card:hover{
-    width: 20rem;
+.card:hover {
+    width: 85%;
     background-color: #0084ff;
 }
 
