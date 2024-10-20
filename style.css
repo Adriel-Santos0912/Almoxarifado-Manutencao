@@ -10,6 +10,10 @@
     --span: #151515;
 }
 
+.form {
+    height: 100%;
+}
+
 body {
     position: absolute;
     width: 100%;
@@ -32,8 +36,6 @@ footer {
     height: 10%;
     width: 100%;
 }
-
-/* Ola mundo */
 
 #title{
     font-family: "Play", sans-serif;
