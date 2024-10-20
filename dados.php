@@ -33,8 +33,7 @@
             </thead>
             <tbody>              
             <?php
-                include('reconhecer.php');
-                
+                include('reconhecer.php');             
                 if($item == 'ds2' || $item == 'k18'){
                     $insSQL = "SELECT id, nome, marca, estq_min, saldo FROM $item";
                 } else if($item == 'resistencia') {
@@ -51,14 +50,24 @@
                             echo "<td>" . $row['nome'] . "</td>";
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
-                            echo "<td>" . $row['saldo'] . "</td>";
+                            echo "<td>" . $row['saldo'] . 
+                            "<form action='atualizar.php' method='post'>
+                                <input type='hidden' name='idS' value='" . $row['id'] . "'>
+                                <button class='btnSomar' type='submit'>+1</button>
+                                <input type='hidden' value='" . $item . "' name= 'bd'>
+                            </form>" . "</td>";
                         }
                         if($item == 'resistencia'){
                             echo "<td>" . sprintf('%03d', $row['id']) . "</td>";
                             echo "<td>" . $row['nome'] . "</td>";
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
-                            echo "<td>" . $row['saldo'] . "</td>";
+                            echo "<td>" . $row['saldo'] . 
+                            "<form action='atualizar.php' method='post'>
+                                <input type='hidden' name='idS' value='" . $row['id'] . "'>
+                                <button class='btnSomar' type='submit'>+1</button>
+                                <input type='hidden' value='" . $item . "' name= 'bd'>
+                            </form>" . "</td>";
                         }
                         echo "</tr>";
                     }

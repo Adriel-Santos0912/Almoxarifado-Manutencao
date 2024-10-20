@@ -10,3 +10,12 @@ main{
 #card{
     background-color: black;
 }
+
+.btnSomar {
+    height: 100%;
+    border: none;
+    font-size: small;
+    background-color: rgb(134, 245, 134);
+    float: right;
+    padding: 0 3px;
+}
