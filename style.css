@@ -32,17 +32,24 @@ main {
 }
 
 .card {
-    width: 80%;
+    width: 16rem;
+    margin: 2rem;
     transition-duration: 0.3s;
 }
 
 .card:hover {
-    width: 85%;
-    background-color: #0084ff;
+    width: 18rem;
+    margin: 0rem;
+    box-shadow: 10px 10px 10px #808080c5;
 }
 
-a{
-    text-decoration: none;
+.card-body{
+    margin:0px 0px 0px 0px;
+    transition-duration: 0.3s;
+}
+
+.card-body:hover{
+    margin:10px 0px 0px 0px;
 }
 
 footer {
@@ -52,4 +59,13 @@ footer {
     color: #fff;
     height: 10%;
     width: 100%;
+}
+
+#link{
+    color: #04a3ff;
+    transition: 0.30s;
+}
+
+#link:hover{
+    color: #0DCAF0;
 }
