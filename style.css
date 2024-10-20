@@ -10,6 +10,10 @@
     --span: #151515;
 }
 
+.form {
+    height: 100%;
+}
+
 body {
     background-color: #f3f3f3;
     position: absolute;
@@ -49,4 +53,3 @@ footer {
     height: 10%;
     width: 100%;
 }
-
