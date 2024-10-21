@@ -38,6 +38,7 @@ main {
 }
 
 .card:hover {
+    background-color: #7575753a;
     width: 18rem;
     margin: 0rem;
     box-shadow: 10px 10px 10px #808080c5;
