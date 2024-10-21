@@ -23,5 +23,4 @@
         $selected = ($item == 'ds2') ? 'DS-2' :
                     (($item == 'k18') ? 'K-18' :
                     (($item == 'resistencia') ? 'Resistencia' : 'Undefined'));
-
     }
