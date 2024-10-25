@@ -21,24 +21,47 @@
     <main class="d-flex justify-content-center">
         <form class="container" method="POST" action="acao.php">
         <div class="row">
+                <!-- o Código da peça pode incluir Numeros -->
+                <div class="col-12 col-xl-6">
+                    <label for="codigo">Código:</label><br>
+                    <input class=" form-control form-control-lg" type="text" name="codigo" placeholder="Código da peça"><br><br>
+                </div>
+
                 <div class="col-12 col-xl-6">
                     <label for="marca">Marca da Peça:</label><br>
-                    <input class=" form-control form-control-lg" type="text" name="marca"><br><br>
+                    <input class=" form-control form-control-lg" type="text" name="marca" placeholder="Insira a marca da peça aqui"><br><br>
                 </div>
 
                 <div class="col-12">
                     <label for="peca">Nome da Peça:</label><br>
-                    <input class="form-control form-control-lg" type="text" name="peca"><br><br> 
-                </div>              
+                    <input class="form-control form-control-lg" type="text" name="peca" placeholder="Insira o nome da peça aqui"><br><br> 
+                </div>
+
+                <!-- if (cadastro === Resistencia){aparecer dropdown button}; -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tipo da Resistência
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a type="button" class="dropdown-item" href="#">X</a>
+                        <a type="button" class="dropdown-item" href="#">ø</a>
+                    </div>
+                </div>
+                <br><br><br>
+                
+                <div class="col-12 col-xl-6">
+                    <label for="medida">Medidas:</label><br>
+                    <input class=" form-control form-control-lg" type="text" name="medida" placeholder="Ex: 2x15cm 1x30cm"><br><br>
+                </div>
                
                 <div class="col-12 col-xl-6">
                     <label for="estoque">Estoque Minimo:</label><br>
-                    <input class="form-control form-control-lg" type="number" name="estoque"><br><br>
+                    <input class="form-control form-control-lg" type="number" name="estoque" placeholder="Minimo de estoque"><br><br>
                 </div>
 
                 <div class="col-12 col-xl-6">
                     <label for="saldo">Saldo da Peça:</label><br>
-                    <input class="form-control form-control-lg" type="number" name="saldo"><br><br>
+                    <input class="form-control form-control-lg" type="number" name="saldo" placeholder="Quantidade no estoque"><br><br>
                 </div>                
             <?php
                 include('reconhecer.php');
@@ -62,8 +85,8 @@
             </div>
         </form>
     </main>
-<script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-<script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
