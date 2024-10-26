@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/styleForm.css">
-    <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Cadastrar Item</title>
 </head>
 <body>
@@ -29,6 +29,7 @@
                     <th scope="col">Marca da Peça</th>
                     <th scope="col">Estoque min</th>
                     <th scope="col">Saldo</th>
+                    <th scope="col" class="text-center">Subtrair</th>
                 </tr>
             </thead>
             <tbody>              
@@ -50,24 +51,18 @@
                             echo "<td>" . $row['nome'] . "</td>";
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
-                            echo "<td>" . $row['saldo'] . 
-                            "<form action='atualizar.php' method='post'>
-                                <input type='hidden' name='idS' value='" . $row['id'] . "'>
-                                <button class='btnSomar' type='submit'>+1</button>
-                                <input type='hidden' value='" . $item . "' name= 'bd'>
-                            </form>" . "</td>";
+                            echo "<td>" . $row['saldo'] . "</td>";
+                            echo "<td><div class='d-flex justify-content-center'><button type='button' class='btn btn-danger'
+                                style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button></div></td>";
                         }
                         if($item == 'resistencia'){
                             echo "<td>" . sprintf('%03d', $row['id']) . "</td>";
                             echo "<td>" . $row['nome'] . "</td>";
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
-                            echo "<td>" . $row['saldo'] . 
-                            "<form action='atualizar.php' method='post'>
-                                <input type='hidden' name='idS' value='" . $row['id'] . "'>
-                                <button class='btnSomar' type='submit'>+1</button>
-                                <input type='hidden' value='" . $item . "' name= 'bd'>
-                            </form>" . "</td>";
+                            echo "<td>" . $row['saldo'] . "</td>";
+                            echo "<td><div class='d-flex justify-content-center'><button type='button' class='btn btn-danger'
+                                style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button></div></td>";
                         }
                         echo "</tr>";
                     }
@@ -81,9 +76,9 @@
                 $conn->close();
             ?>
         </table>
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
 

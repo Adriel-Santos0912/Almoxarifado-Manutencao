@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,75 +12,106 @@
     <script src="script.js" defer></script>
     <title>Almoxarifado Manutenção</title>
 </head>
+
 <body>
     <header class="bg-dark d-flex justify-content-center align-items-center">
         <h1 class="text-white">Almoxarifado Manutenção</h1>
     </header>
 
-    <main id="content">
+    <main>
         <div class="container">
             <form class="row d-flex justify-content-between" action="operation.php" method="POST">
+                
+
+                <!-- Maquina Ds-2 -->
                 <article class="col-12 col-xl-4 p-3 p-xl-0 d-flex justify-content-center">
+
+                    <!-- Card -->
                     <div class="card">
-                            <img src="Img/DS-2 whiteBG.png" class="card-img-top" alt="icone da Máquina-ds2">
-                            <div class="card-body pt-0 ">
-                                <h5 class="card-title text-center">Máquina DS-2</h5>
-                                <br>
-                                <!-- botoes -->
+                        <img src="Img/DS-2 whiteBG.png" class="card-img-top" alt="icone da Máquina-ds2">
+                        
+                        <!-- card-body -->
+                        <div class="card-body pt-0 ">
+                            <h5 class="card-title text-center">Máquina DS-2</h5>
+                            <br>
+
+                            <!-- botoes -->
+                            <div class="d-flex flex-column">
                                 <div class="d-block d-flex justify-content-center pb-2">
-                                    <input class="btn btn-info" type="submit" value="Acessar" name="btn1"> 
+                                    <input class="btn btn-info" type="submit" value="Acessar" name="btn1"
+                                    alt="botão de Acessar planilha da máquina Ds-2">
                                 </div>
-                                <div class="d-block d-flex justify-content-center">
-                                    <input class="btn btn-success btn-lg" type="submit" value="Cadastrar Peças" name="cadastro1"> 
-                                </div>
+                                <input class="btn btn-success mx-3" type="submit" value="Cadastrar Peças"
+                                    name="cadastro1" alt="botão de Acessar cadastro da máquina Ds-2">
                             </div>
                         </div>
+                    </div>
                 </article>
-    
-                <article class="col-12 col-xl-4 p-3 p-xl-0 d-flex justify-content-center">
+
+
+                <!-- Maquina K-18 -->
+                <article class="col-12 col-xl-4 p-3 p-xl-0 d-flex justify-content-center ">
+
+                    <!-- Card -->
                     <div class="card">
                         <img src="Img/K-18 whiteBG.png" class="card-img-top" alt="icone da Máquina-k18">
+                        
+                        <!-- card-body -->
                         <div class="card-body pt-0">
                             <h5 class="card-title text-center">Máquina K-18</h5>
                             <br>
+
                             <!-- botoes -->
-                            <div class="d-block d-flex justify-content-center pb-2">
-                                <input class="btn btn-info " type="submit" value="Acessar" name="btn2"> 
-                            </div>
-                            <div class="d-block d-flex justify-content-center">
-                                <input class="btn btn-success btn-lg" type="submit" value="Cadastrar Peças" name="cadastro2"> 
+                            <div class="d-flex flex-column">
+                                <div class="d-block d-flex justify-content-center pb-2">
+                                    <input class="btn btn-info " type="submit" value="Acessar" name="btn2"
+                                        alt="botão de Acessar planilha da máquina K-18">
+                                </div>
+                                <input class="btn btn-success mx-3" type="submit" value="Cadastrar Peças"
+                                    name="cadastro2" alt="botão de Acessar cadastro da máquina K-18">
                             </div>
                         </div>
                     </div>
                 </article>
-    
+
+
+                <!-- Resistencias -->
                 <article class="col-12 col-xl-4 p-3 p-xl-0 d-flex justify-content-center">
+
+                    <!-- Card -->
                     <div class="card">
                         <img src="Img/Resistencia whiteBG.png" class="card-img-top" alt="icone da Resistencia">
+
+                        <!-- card-body -->
                         <div class="card-body pt-0">
                             <h5 class="card-title text-center">Resistência</h5>
                             <br>
+
                             <!-- botoes -->
-                            <div class="d-block d-flex justify-content-center pb-2">
-                                <input class="btn btn-info" type="submit" value="Acessar" name="btn3">  
+                            <div class="d-flex flex-column">
+                                <div class="d-flex justify-content-center pb-2">
+                                    <input class="btn btn-info" type="submit" value="Acessar" name="btn3"
+                                    alt="botão de Acessar planilha da Resistência">
+                                </div>
+                                <input class="btn btn-success mx-3" type="submit" value="Cadastrar Peças"
+                                    name="cadastro3" alt="botão de Acessar cadastro da Resistência">
                             </div>
-                            <div class="d-block d-flex justify-content-center">
-                                <input class="btn btn-success btn-lg" type="submit" value="Cadastrar Peças" name="cadastro3"> 
-                            </div> 
                         </div>
                     </div>
                 </article>
 
-                <div class="col-12 pt-3 mb-5 mb-xl-0 d-flex justify-content-center">
-                    <a href="HTML/controleLaminas.html" class="btn btn-secondary btn-lg">Controle de Lâminas</a>
+
+                <div class="col-12 pt-3 mb-5 mb-xl-1 d-flex justify-content-center">
+                    <a href="HTML/controleLaminas.html" class="btn btn-success btn-lg">Controle de Lâminas<img src="Img/estilete.png" width="40px" height="40px" alt=""></a>
                 </div>
             </form>
         </div>
-    </main> 
+    </main>
 
     <footer class="bg-dark d-flex justify-content-center align-items-center">
-        <p class="m-0">Desenvolvido por  <a id="link" class="text-decoration-none" href="https://github.com/Jesse-Luz"><strong>Jesse</strong></a> e <a id="link" class="text-decoration-none" href="https://github.com/Adriel-Santos0912"><strong>Adriel</strong></a>
-        Para controle de peças, do estoque da Manutenção</p>
+        <p class="m-0">Desenvolvido por <a id="link" class="text-decoration-none"
+                href="https://github.com/Jesse-Luz"><strong>Jesse</strong></a> e <a id="link"
+                class="text-decoration-none" href="https://github.com/Adriel-Santos0912"><strong>Adriel</strong></a></p>
     </footer>
 </body>
 </html>
