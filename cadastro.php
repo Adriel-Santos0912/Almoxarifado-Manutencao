@@ -21,7 +21,7 @@
     <main class="d-flex justify-content-center">
         <form class="container" method="POST" action="acao.php">
         <div class="row">
-                <!-- o Código da peça pode incluir Numeros -->
+                <!-- o Código da peça pode incluir Letras e Numeros -->
                 <div class="col-12 col-xl-6">
                     <label for="codigo">Código:</label><br>
                     <input class=" form-control form-control-lg" type="text" name="codigo" placeholder="Código da peça"><br><br>
@@ -37,22 +37,36 @@
                     <input class="form-control form-control-lg" type="text" name="peca" placeholder="Insira o nome da peça aqui"><br><br> 
                 </div>
 
-                <!-- if (cadastro === Resistencia){aparecer dropdown button}; -->
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Tipo da Resistência
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a type="button" class="dropdown-item" href="#">X</a>
-                        <a type="button" class="dropdown-item" href="#">ø</a>
-                    </div>
-                </div>
+                <?php
+                    if($_SERVER["REQUEST_METHOD"] == "POST"){
+                        if($item == 'resistencia'){
+                        echo
+                        "
+                        <div class='col-12 col-xl-6 d-flex align-items-center'>
+                            <div class='dropdown'>
+                                <button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                    Tipo da Resistência
+                                </button>
+                                <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                                    <a type='button' class='dropdown-item' href='#'>X</a>
+                                    <a type='button' class='dropdown-item' href='#'>ø</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-12 col-xl-6'>
+                            <label for='medida'>Medidas:</label><br>
+                            <input class=' form-control form-control-lg' type='text' name='medida' placeholder='Ex: 2x15cm 1x30cm'><br><br>
+                        </div>
+                        ";
+                        }
+                    }
+                ?>
+                
                 <br><br><br>
                 
-                <div class="col-12 col-xl-6">
-                    <label for="medida">Medidas:</label><br>
-                    <input class=" form-control form-control-lg" type="text" name="medida" placeholder="Ex: 2x15cm 1x30cm"><br><br>
-                </div>
+                <!-- if (cadastro === Resistencia){aparecer Medidas}; -->
+                
                
                 <div class="col-12 col-xl-6">
                     <label for="estoque">Estoque Minimo:</label><br>

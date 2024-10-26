@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/styleForm.css">
-    <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Cadastrar Item</title>
 </head>
 <body>
@@ -29,6 +29,7 @@
                     <th scope="col">Marca da Peça</th>
                     <th scope="col">Estoque min</th>
                     <th scope="col">Saldo</th>
+                    <th scope="col" class="text-center">Subtrair</th>
                 </tr>
             </thead>
             <tbody>              
@@ -52,6 +53,7 @@
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
                             echo "<td>" . $row['saldo'] . "</td>";
+                            echo "<td><div class='d-flex justify-content-center'><button class='btn btn-danger btn-sm'> - 1 </button></div></td>";
                         }
                         if($item == 'resistencia'){
                             echo "<td>" . sprintf('%03d', $row['id']) . "</td>";
@@ -59,6 +61,7 @@
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
                             echo "<td>" . $row['saldo'] . "</td>";
+                            echo "<td><div class='d-flex justify-content-center'><button class='btn btn-danger btn-sm'> - 1 </button></div></td>";
                         }
                         echo "</tr>";
                     }
