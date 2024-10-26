@@ -37,6 +37,18 @@
                     <input class="form-control form-control-lg" type="text" name="peca" placeholder="Insira o nome da peça aqui"><br><br> 
                 </div>
 
+                <div class="col-12 col-xl-6">
+                    <label for="estoque">Estoque Minimo:</label><br>
+                    <input class="form-control form-control-lg" type="number" name="estoque" placeholder="Minimo de estoque"><br><br>
+                </div>
+
+                <div class="col-12 col-xl-6">
+                    <label for="saldo">Saldo da Peça:</label><br>
+                    <input class="form-control form-control-lg" type="number" name="saldo" placeholder="Quantidade no estoque"><br><br>
+                </div>
+                
+                <br><br><br>
+                
                 <?php
                     if($_SERVER["REQUEST_METHOD"] == "POST"){
                         if($item == 'resistencia'){
@@ -63,20 +75,8 @@
                     }
                 ?>
                 
-                <br><br><br>
-                
-                <!-- if (cadastro === Resistencia){aparecer Medidas}; -->
-                
                
-                <div class="col-12 col-xl-6">
-                    <label for="estoque">Estoque Minimo:</label><br>
-                    <input class="form-control form-control-lg" type="number" name="estoque" placeholder="Minimo de estoque"><br><br>
-                </div>
-
-                <div class="col-12 col-xl-6">
-                    <label for="saldo">Saldo da Peça:</label><br>
-                    <input class="form-control form-control-lg" type="number" name="saldo" placeholder="Quantidade no estoque"><br><br>
-                </div>                
+                               
             <?php
                 include('reconhecer.php');
 

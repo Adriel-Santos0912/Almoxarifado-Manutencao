@@ -53,7 +53,8 @@
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
                             echo "<td>" . $row['saldo'] . "</td>";
-                            echo "<td><div class='d-flex justify-content-center'><button class='btn btn-danger btn-sm'> - 1 </button></div></td>";
+                            echo "<td><div class='d-flex justify-content-center'><button type='button' class='btn btn-danger'
+                                style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button></div></td>";
                         }
                         if($item == 'resistencia'){
                             echo "<td>" . sprintf('%03d', $row['id']) . "</td>";
@@ -61,7 +62,8 @@
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
                             echo "<td>" . $row['saldo'] . "</td>";
-                            echo "<td><div class='d-flex justify-content-center'><button class='btn btn-danger btn-sm'> - 1 </button></div></td>";
+                            echo "<td><div class='d-flex justify-content-center'><button type='button' class='btn btn-danger'
+                                style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button></div></td>";
                         }
                         echo "</tr>";
                     }
