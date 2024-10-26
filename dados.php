@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/styleForm.css">
-    <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Cadastrar Item</title>
 </head>
 <body>
@@ -29,6 +29,7 @@
                     <th scope="col">Marca da Peça</th>
                     <th scope="col">Estoque min</th>
                     <th scope="col">Saldo</th>
+                    <th scope="col" class="text-center">Subtrair</th>
                 </tr>
             </thead>
             <tbody>              
@@ -81,9 +82,9 @@
                 $conn->close();
             ?>
         </table>
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <script src="bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
 
