@@ -61,7 +61,7 @@
                     ?>
                     <th scope="col">Estoque min</th>
                     <th scope="col">Saldo</th>
-                    <th scope="col" class="text-center">Subtrair</th>
+                    <th scope="col" id='colsub' class="text-center px-1">Subtrair</th>
                 </tr>
             </thead>
             <tbody>              
@@ -84,7 +84,7 @@
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
                             echo "<td>" . $row['saldo'] . "</td>";
-                            echo "<td><div class='d-flex justify-content-center'><button type='button' class='btn btn-danger'
+                            echo "<td class='px-0'><div id='btndiv' class='d-flex justify-content-center'><button type='button' class='btn btn-danger'
                                 style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button></div></td>";
                         }
                         if($item == 'resistencia'){
@@ -95,7 +95,7 @@
                             echo "<td>" . $row['medidas'] ."</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
                             echo "<td>" . $row['saldo'] . "</td>";
-                            echo "<td><div class='d-flex justify-content-center'><button type='button' class='btn btn-danger'
+                            echo "<td class='px-0'><div id='btndiv' class='d-flex justify-content-center'><button type='button' class='btn btn-danger'
                                 style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button></div></td>";
                         }
                         echo "</tr>";
