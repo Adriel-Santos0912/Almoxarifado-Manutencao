@@ -83,12 +83,6 @@
                             echo "<td>" . $row['nome'] . "</td>";
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
-                            echo "<td>" . $row['saldo'] . 
-                            "<form action='atualizar.php' method='post'>
-                                <input type='hidden' name='idS' value='" . $row['id'] . "'>
-                                <button class='btnSomar' type='submit'>+1</button>
-                                <input type='hidden' value='" . $item . "' name= 'bd'>
-                            </form>" . "</td>";
                             echo "<td>" . $row['saldo'] . "</td>";
                             echo "<td><div class='d-flex justify-content-center'><button type='button' class='btn btn-danger'
                                 style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button></div></td>";
@@ -100,12 +94,6 @@
                             echo "<td>" . $row['tipo'] . "</td>";
                             echo "<td>" . $row['medidas'] ."</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
-                            echo "<td>" . $row['saldo'] . 
-                            "<form action='atualizar.php' method='post'>
-                                <input type='hidden' name='idS' value='" . $row['id'] . "'>
-                                <button class='btnSomar' type='submit'>+1</button>
-                                <input type='hidden' value='" . $item . "' name= 'bd'>
-                            </form>" . "</td>";
                             echo "<td>" . $row['saldo'] . "</td>";
                             echo "<td><div class='d-flex justify-content-center'><button type='button' class='btn btn-danger'
                                 style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button></div></td>";

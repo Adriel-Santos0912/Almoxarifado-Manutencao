@@ -79,8 +79,7 @@
                             <input class=' form-control form-control-lg' type='text' name='medidas' placeholder='Ex: 2x15cm 1x30cm' required>
                         </div>
                         ";
-                        }
-                        
+                        }   
                     }
                 ?>              
             <?php
