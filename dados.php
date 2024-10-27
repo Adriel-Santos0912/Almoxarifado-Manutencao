@@ -8,27 +8,40 @@
     <title>Cadastrar Item</title>
 </head>
 <body>
+    <div id="floatbtn" class='float-start p-1'>
+        <a href="index.html"><button class='btn btn-info btn-sm'>Voltar</button></a>
+    </div>
     <header class="mb-5 d-flex">
-        <div id="floatbtn" class='float-start p-1'>
-            <button class='btn btn-info btn-sm'>Voltar</button>
-        </div>
         <?php
+            if($item == 'ds2'){
+                $headDs2 = 'active';
+                $headK18 = $headRes = "";
+            } else if ($item == 'k18') {
+                $headK18 = 'active';
+                $headDs2 = $headRes = "";
+            } else if ($item == 'resistencia') {
+                $headRes = 'active';
+                $headDs2 = $headK18 = "";
+            }
+
             echo " 
-                <ul class='nav nav-tabs d-flex justify-content-center'>
-                    
-                    <li class='nav-item'>
-                        <input class='nav-link text-dark' type='submit' value='K-18' name='btn2'
+                <form action='operation.php' method='POST'>
+                    <ul class='nav nav-tabs d-flex justify-content-center'>
+                        <li class='nav-item'>
+                            <input class='nav-link " . $headDs2 . " text-dark' type='submit' value='DS-2' name='btn1'
                             alt='botão de Acessar planilha da máquina K-18'>
-                    </li>
-                    <li class='nav-item'>
-                        <p class='nav-link active text-info'>Peças " . $selected . "</p>
-                    </li>
-                    <li class='nav-item'>
-                        <input class='nav-link text-dark' type='submit' value='Resistência' name='btn3'
+                        </li>
+                        <li class='nav-item'>
+                            <input class='nav-link " . $headK18 . "  text-dark' type='submit' value='K-18' name='btn2'
+                            alt='botão de Acessar planilha da máquina K-18'>
+                        </li>
+                        <li class='nav-item'>
+                            <input class='nav-link " . $headRes . "  text-dark' type='submit' value='Resistência' name='btn3'
                             alt='botão de Acessar planilha da Resistência'>
-                    </li>  
-                </il>               
-            ";
+                        </li>  
+                    </il>      
+                </form>         
+                ";
             $conn->close();
         ?>
     </header>
