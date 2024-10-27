@@ -53,6 +53,12 @@
                     <th scope="col">Codigo</th>
                     <th scope="col">Nome da Peça</th>
                     <th scope="col">Marca da Peça</th>
+                    <?php
+                        if($item == 'resistencia'){
+                            echo "<th scope='col'>Tipo</th>"; 
+                            echo "<th scope='col'>Medidas</th>";  
+                        }
+                    ?>
                     <th scope="col">Estoque min</th>
                     <th scope="col">Saldo</th>
                     <th scope="col" class="text-center">Subtrair</th>
@@ -64,7 +70,7 @@
                 if($item == 'ds2' || $item == 'k18'){
                     $insSQL = "SELECT id, nome, marca, estq_min, saldo FROM $item";
                 } else if($item == 'resistencia') {
-                    $insSQL = "SELECT id, nome, marca, estq_min, saldo FROM $item";
+                    $insSQL = "SELECT cod, nome, tipo, marca, estq_min, medidas, saldo FROM $item";
                 }
                 
                 $res = $conn->query($insSQL);
@@ -88,9 +94,11 @@
                                 style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button></div></td>";
                         }
                         if($item == 'resistencia'){
-                            echo "<td>" . sprintf('%03d', $row['id']) . "</td>";
+                            echo "<td>" . sprintf('%03d', $row['cod']) . "</td>";
                             echo "<td>" . $row['nome'] . "</td>";
                             echo "<td>" . $row['marca'] . "</td>";
+                            echo "<td>" . $row['tipo'] . "</td>";
+                            echo "<td>" . $row['medidas'] ."</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
                             echo "<td>" . $row['saldo'] . 
                             "<form action='atualizar.php' method='post'>

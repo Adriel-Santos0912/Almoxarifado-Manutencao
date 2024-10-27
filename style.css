@@ -49,10 +49,6 @@ main {
     transition-duration: 0.3s;
 }
 
-.card-body:hover{
-    margin:10px 0px 0px 0px;
-}
-
 footer {
     bottom: 0;
     left: 0;

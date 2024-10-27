@@ -4,7 +4,6 @@
 
 #floatbtn{
     position: absolute;
-    border-bottom: 1.8px solid #dee2e6 ;
 }
 
 ul{
@@ -22,6 +21,10 @@ main{
 
 form {
     width: 100%;
+}
+
+.table-dark th, td {
+   text-align: center;
 }
 
 .btnSomar {
