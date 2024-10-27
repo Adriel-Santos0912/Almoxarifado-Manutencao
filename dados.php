@@ -8,16 +8,29 @@
     <title>Cadastrar Item</title>
 </head>
 <body>
-    <header class="mb-5 bg-dark d-flex">
-        <div class="d-inline p-2">
-            <a class="btn btn-info" href="index.html">Voltar</a>
+    <header class="mb-5 d-flex">
+        <div id="floatbtn" class='float-start p-1'>
+            <button class='btn btn-info btn-sm'>Voltar</button>
         </div>
-        <div id="h1" class="d-flex justify-content-center">
-            <?php
-                echo "<h1 class='text-white text-center'>Peças " . $selected . "</h1>";
-                $conn->close();
-            ?>
-        </div>
+        <?php
+            echo " 
+                <ul class='nav nav-tabs d-flex justify-content-center'>
+                    
+                    <li class='nav-item'>
+                        <input class='nav-link text-dark' type='submit' value='K-18' name='btn2'
+                            alt='botão de Acessar planilha da máquina K-18'>
+                    </li>
+                    <li class='nav-item'>
+                        <p class='nav-link active text-info'>Peças " . $selected . "</p>
+                    </li>
+                    <li class='nav-item'>
+                        <input class='nav-link text-dark' type='submit' value='Resistência' name='btn3'
+                            alt='botão de Acessar planilha da Resistência'>
+                    </li>  
+                </il>               
+            ";
+            $conn->close();
+        ?>
     </header>
 
     <main>
