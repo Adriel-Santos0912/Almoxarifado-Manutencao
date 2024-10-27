@@ -3,6 +3,7 @@
 }
 
 #floatbtn{
+    position: absolute;
     border-bottom: 1.8px solid #dee2e6 ;
 }
 
@@ -17,6 +18,10 @@ main{
 
 #card{
     background-color: black;
+}
+
+form {
+    width: 100%;
 }
 
 .btnSomar {
