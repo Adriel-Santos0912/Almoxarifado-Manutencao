@@ -8,6 +8,7 @@
         $saldo = $_POST['saldo'];
         $marca = $_POST['marca'];
         $estqMin = $_POST['estoque'];
+        
         if(isset($_POST['medidas'])){
             $medidas = $_POST['medidas'];
             $tipoRes = $_POST['tipo'];
@@ -25,8 +26,10 @@
             echo '<h3>Cadastrado</h3>';
             echo 'Peça: ' . $namePeca . '<br>';
             echo 'Marca: ' . $marca . '<br>';
-            echo 'Tipo Resistência: ' . $tipoRes . '<br>';
-            echo 'Medidas: ' . $medidas . '<br>';
+            if($item == 'resistencia'){
+                echo 'Tipo Resistência: ' . $tipoRes . '<br>';
+                echo 'Medidas: ' . $medidas . '<br>';
+            }
             echo 'Estoque Minimo: ' . $estqMin . '<br>';
             echo 'Quantidade: ' . $saldo . '<br>';
             echo "<p><a href='HTML/form' . $item . '.html'>Cadastrar outro item</a></p>";
@@ -34,7 +37,6 @@
         }else {
             echo "ERRO: " . $stmt->error;
         }
-
         $stmt-> close();
         $conn->close();
     }

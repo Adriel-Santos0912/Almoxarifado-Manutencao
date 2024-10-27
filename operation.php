@@ -4,7 +4,7 @@
         if($btn == "acessar"){
             include('dados.php');
         } else if ($btn == "cadastrar") {
-            include('cadastro.php');
+            include('formCadastro.php');
         } else {
             echo "Invalido";
         }

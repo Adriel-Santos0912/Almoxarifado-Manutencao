@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/styleForm.css">
     <link href="./bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" defer></script>
     <title>Cadastrar Item</title>
 </head>
 <body>
@@ -23,7 +26,6 @@
                 $headRes = 'active';
                 $headDs2 = $headK18 = "";
             }
-
             echo " 
                 <form action='operation.php' method='POST'>
                     <ul class='nav nav-tabs d-flex justify-content-center'>
@@ -45,7 +47,6 @@
             $conn->close();
         ?>
     </header>
-
     <main>
         <table class="table table-striped table-bordered">
             <thead class="table-dark">
@@ -72,7 +73,6 @@
                 } else if($item == 'resistencia') {
                     $insSQL = "SELECT cod, nome, tipo, marca, estq_min, medidas, saldo FROM $item";
                 }
-                
                 $res = $conn->query($insSQL);
             
                 if($res->num_rows > 0){
@@ -84,8 +84,12 @@
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
                             echo "<td>" . $row['saldo'] . "</td>";
-                            echo "<td><div class='d-flex justify-content-center'><button type='button' class='btn btn-danger'
-                                style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button></div></td>";
+                            echo "
+                                <td>
+                                    <div class='d-flex justify-content-center'>
+                                        <button type='button' class='btn btn-danger' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button>
+                                    </div>
+                                </td>";
                         }
                         if($item == 'resistencia'){
                             echo "<td>" . sprintf('%03d', $row['cod']) . "</td>";
@@ -95,8 +99,12 @@
                             echo "<td>" . $row['medidas'] ."</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
                             echo "<td>" . $row['saldo'] . "</td>";
-                            echo "<td><div class='d-flex justify-content-center'><button type='button' class='btn btn-danger'
-                                style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button></div></td>";
+                            echo "
+                                <td>
+                                    <div class='d-flex justify-content-center'>
+                                        <button type='button' class='btn btn-danger' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button>
+                                    </div>
+                                </td>";
                         }
                         echo "</tr>";
                     }
@@ -106,13 +114,9 @@
                     $voltar = $_SERVER['HTTP_REFERER'];
                     echo "<a href= . $voltar>Voltar</a>";
                 }
-
                 $conn->close();
             ?>
         </table>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
 
