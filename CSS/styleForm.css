@@ -27,6 +27,14 @@ form {
    text-align: center;
 }
 
+#colsub{
+    width: 1rem;
+}
+
+#btndiv{
+    width: 100%;
+}
+
 .btnSomar {
     height: 100%;
     border: none;

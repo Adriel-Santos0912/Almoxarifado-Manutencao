@@ -62,7 +62,7 @@
                     ?>
                     <th scope="col">Estoque min</th>
                     <th scope="col">Saldo</th>
-                    <th scope="col" class="text-center">Subtrair</th>
+                    <th scope="col" id='colsub' class="text-center px-1">Subtrair</th>
                 </tr>
             </thead>
             <tbody>              
