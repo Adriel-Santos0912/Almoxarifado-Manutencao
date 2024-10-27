@@ -67,7 +67,7 @@
                         echo
                         "
                         <div class='col-xl-6 d-flex flex-column justify-content-start>
-                            <label for='tipo'>Escolha uma opção: </label>
+                            <label for='tipo'>Tipo da Resistência: </label>
                             <select class='shadow-none btn btn-secondary dropdown-toggle' name='tipo' required>
                                 <option value='' disabled selected></option>
                                 <option class='dropdown-item' value='X'>X</option>
