@@ -24,54 +24,63 @@
                 <!-- o Código da peça pode incluir Letras e Numeros -->
                 <div class="col-12 col-xl-6">
                     <label for="codigo">Código:</label><br>
-                    <input class=" form-control form-control-lg" type="text" name="codigo" placeholder="Código da peça"><br><br>
+                    <input class=" form-control form-control-lg" type="text" name="codigo" placeholder="Código da peça" required><br><br>
                 </div>
 
                 <div class="col-12 col-xl-6">
                     <label for="marca">Marca da Peça:</label><br>
-                    <input class=" form-control form-control-lg" type="text" name="marca" placeholder="Insira a marca da peça aqui"><br><br>
+                    <input class=" form-control form-control-lg" type="text" name="marca" placeholder="Insira a marca da peça aqui" required><br><br>
                 </div>
 
                 <div class="col-12">
                     <label for="peca">Nome da Peça:</label><br>
-                    <input class="form-control form-control-lg" type="text" name="peca" placeholder="Insira o nome da peça aqui"><br><br> 
+                    <input class="form-control form-control-lg" type="text" name="peca" placeholder="Insira o nome da peça aqui" required><br><br> 
                 </div>
 
                 <div class="col-12 col-xl-6">
                     <label for="estoque">Estoque Minimo:</label><br>
-                    <input class="form-control form-control-lg" type="number" name="estoque" placeholder="Minimo de estoque"><br><br>
+                    <input class="form-control form-control-lg" type="number" name="estoque" placeholder="Minimo de estoque" required><br><br>
                 </div>
 
                 <div class="col-12 col-xl-6">
                     <label for="saldo">Saldo da Peça:</label><br>
-                    <input class="form-control form-control-lg" type="number" name="saldo" placeholder="Quantidade no estoque"><br><br>
+                    <input class="form-control form-control-lg" type="number" name="saldo" placeholder="Quantidade no estoque" required><br><br>
                 </div>
                 
                 <br><br><br>
                 
+                <!-- <div class='col-12 col-xl-6 d-flex align-items-center'>
+                        <div class='dropdown'>
+                            <button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                Tipo da Resistência
+                            </button>
+                            <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                                <input class='dropdown-item' type='button' name='medidas' value='X'>
+                                <input class='dropdown-item' type='button' name='medidas' value='ø'>
+                            </div>
+                        </div>
+                    </div> -->
+
                 <?php
                     if($_SERVER["REQUEST_METHOD"] == "POST"){
                         if($item == 'resistencia'){
                         echo
                         "
-                        <div class='col-12 col-xl-6 d-flex align-items-center'>
-                            <div class='dropdown'>
-                                <button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                                    Tipo da Resistência
-                                </button>
-                                <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-                                    <a type='button' class='dropdown-item' href='#'>X</a>
-                                    <a type='button' class='dropdown-item' href='#'>ø</a>
-                                </div>
-                            </div>
+                        <div class='col-xl-6 d-flex flex-column justify-content-start>
+                            <label for='tipo'>Escolha uma opção: </label>
+                            <select class='shadow-none btn btn-secondary dropdown-toggle' name='tipo' required>
+                                <option value='' disabled selected></option>
+                                <option class='dropdown-item' value='X'>X</option>
+                                <option class='dropdown-item' value='ø'>ø</option>
+                            </select>
                         </div>
-
                         <div class='col-12 col-xl-6'>
                             <label for='medida'>Medidas:</label><br>
-                            <input class=' form-control form-control-lg' type='text' name='medida' placeholder='Ex: 2x15cm 1x30cm'><br><br>
+                            <input class=' form-control form-control-lg' type='text' name='medidas' placeholder='Ex: 2x15cm 1x30cm' required>
                         </div>
                         ";
                         }
+                        
                     }
                 ?>
                 
@@ -93,7 +102,7 @@
                     
                 }
             ?>
-            <div class='d-flex justify-content-center' id="enviar">
+            <div class='d-flex justify-content-center mt-5' id="enviar">
                 <input class="btn btn-info py-2 ps-5 pe-5" type="submit" value="Enviar">
             </div>
             </div>
