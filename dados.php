@@ -47,8 +47,7 @@
             </thead>
             <tbody>              
             <?php
-                include('reconhecer.php');
-                
+                include('reconhecer.php');             
                 if($item == 'ds2' || $item == 'k18'){
                     $insSQL = "SELECT id, nome, marca, estq_min, saldo FROM $item";
                 } else if($item == 'resistencia') {
