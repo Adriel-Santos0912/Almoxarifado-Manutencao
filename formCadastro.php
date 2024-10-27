@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/stylecadastro.css">
     <link href="bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" defer></script>
     <title>Cadastrar Peças</title>
 </head>
 <body class="bg-light">
@@ -18,8 +21,8 @@
             ?>
         </div>
     </header>
-    <main class="d-flex justify-content-center">
-        <form class="container" method="POST" action="acao.php">
+    <main class="d-flex justify-content-center">s
+        <form class="container" method="POST" action="cadastrar.php">
         <div class="row">
                 <!-- o Código da peça pode incluir Letras e Numeros -->
                 <div class="col-12 col-xl-6">
@@ -45,22 +48,9 @@
                 <div class="col-12 col-xl-6">
                     <label for="saldo">Saldo da Peça:</label><br>
                     <input class="form-control form-control-lg" type="number" name="saldo" placeholder="Quantidade no estoque" required><br><br>
-                </div>
-                
+                </div>          
                 <br><br><br>
                 
-                <!-- <div class='col-12 col-xl-6 d-flex align-items-center'>
-                        <div class='dropdown'>
-                            <button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                                Tipo da Resistência
-                            </button>
-                            <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-                                <input class='dropdown-item' type='button' name='medidas' value='X'>
-                                <input class='dropdown-item' type='button' name='medidas' value='ø'>
-                            </div>
-                        </div>
-                    </div> -->
-
                 <?php
                     if($_SERVER["REQUEST_METHOD"] == "POST"){
                         if($item == 'resistencia'){
@@ -103,8 +93,5 @@
             </div>
         </form>
     </main>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
