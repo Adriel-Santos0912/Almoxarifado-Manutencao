@@ -2,6 +2,14 @@
     width: 90%;
 }
 
+#floatbtn{
+    border-bottom: 1.8px solid #dee2e6 ;
+}
+
+ul{
+    width: 100%;
+}
+
 main{
     width: 80%;
     margin: 0 auto;
