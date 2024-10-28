@@ -21,7 +21,7 @@
             ?>
         </div>
     </header>
-    <main class="d-flex justify-content-center">s
+    <main class="d-flex justify-content-center">
         <form class="container" method="POST" action="cadastrar.php">
         <div class="row">
                 <!-- o Código da peça pode incluir Letras e Numeros -->
