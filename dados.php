@@ -62,14 +62,14 @@
                     ?>
                     <th scope="col">Estoque min</th>
                     <th scope="col">Saldo</th>
-                    <th scope="col" id='colsub' class="text-center px-1">Subtrair</th>
+                    <th scope="col" id='colsub' class="text-center px-2">Subtrair</th>
                 </tr>
             </thead>
             <tbody>              
             <?php
                 include('reconhecer.php');             
                 if($item == 'ds2' || $item == 'k18'){
-                    $insSQL = "SELECT id, nome, marca, estq_min, saldo FROM $item";
+                    $insSQL = "SELECT cod, nome, marca, estq_min, saldo FROM $item";
                 } else if($item == 'resistencia') {
                     $insSQL = "SELECT cod, nome, tipo, marca, estq_min, medidas, saldo FROM $item";
                 }
@@ -79,7 +79,7 @@
                     while($row = $res->fetch_assoc()){
                         echo "<tr>";
                         if($item == 'ds2' || $item == 'k18'){
-                            echo "<td>" . sprintf('%03d', $row['id']) . "</td>";
+                            echo "<td>" . $row['cod'] . "</td>";
                             echo "<td>" . $row['nome'] . "</td>";
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
