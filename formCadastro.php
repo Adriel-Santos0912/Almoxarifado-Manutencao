@@ -27,7 +27,7 @@
                 <!-- o Código da peça pode incluir Letras e Numeros -->
                 <div class="col-12 col-xl-6">
                     <label for="codigo">Código:</label><br>
-                    <input class=" form-control form-control-lg" type="text" name="codigo" placeholder="Código da peça" required><br><br>
+                    <input class=" form-control form-control-lg" type="number" name="codigo" placeholder="Código da peça" required><br><br>
                 </div>
 
                 <div class="col-12 col-xl-6">
@@ -49,8 +49,6 @@
                     <label for="saldo">Saldo da Peça:</label><br>
                     <input class="form-control form-control-lg" type="number" name="saldo" placeholder="Quantidade no estoque" required><br><br>
                 </div>          
-                <br><br><br>
-                
                 <?php
                     if($_SERVER["REQUEST_METHOD"] == "POST"){
                         if($item == 'resistencia'){
