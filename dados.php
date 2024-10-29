@@ -62,33 +62,48 @@
                     ?>
                     <th scope="col">Estoque min</th>
                     <th scope="col">Saldo</th>
-                    <th scope="col" id='colsub' class="text-center px-2">Subtrair</th>
+                    <th scope="col" id='colsub' class="text-center px-2">Alterar</th>
+                    <!-- <th scope="col" id='colsub' class="text-center px-2">Adicionar</th> -->
                 </tr>
             </thead>
             <tbody>              
             <?php
-                include('reconhecer.php');             
+                include('reconhecer.php'); 
+
                 if($item == 'ds2' || $item == 'k18'){
                     $insSQL = "SELECT cod, nome, marca, estq_min, saldo FROM $item";
                 } else if($item == 'resistencia') {
                     $insSQL = "SELECT cod, nome, tipo, marca, estq_min, medidas, saldo FROM $item";
                 }
+
                 $res = $conn->query($insSQL);
             
                 if($res->num_rows > 0){
                     while($row = $res->fetch_assoc()){
+                        if($row['saldo'] < $row['estq_min']){
+                            $saldoMenor = 'text-danger';
+                        } else {
+                            $saldoMenor = "";
+                        }
                         echo "<tr>";
                         if($item == 'ds2' || $item == 'k18'){
                             echo "<td>" . $row['cod'] . "</td>";
                             echo "<td>" . $row['nome'] . "</td>";
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
-                            echo "<td>" . $row['saldo'] . "</td>";
+                            echo "<td class='" . $saldoMenor . "'>" . $row['saldo'] . "</td>";
                             echo "
                                 <td>
-                                    <div class='d-flex justify-content-center'>
-                                        <button type='button' class='btn btn-danger' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button>
-                                    </div>
+                                    <form action='atualizarQntd.php' method='POST'>
+                                        <div class='btnMod d-flex'>
+                                            <button type='submit' name='decrement' value='" . $row['cod'] . "' class='btn btn-danger' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button>
+                                            
+                                            <input type='hidden' name='bd' value='" . $item . "'>
+                                            <input type='hidden' name='vfSaldo' value='" . $row['saldo'] . "'>                                           
+
+                                            <button type='submit' name='increment' value='" . $row['cod'] . "' class='btn btn-success' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> + 1 </button>
+                                        </div>
+                                    </form>
                                 </td>";
                         }
                         if($item == 'resistencia'){
@@ -98,12 +113,19 @@
                             echo "<td>" . $row['tipo'] . "</td>";
                             echo "<td>" . $row['medidas'] ."</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
-                            echo "<td>" . $row['saldo'] . "</td>";
+                            echo "<td class='" . $saldoMenor . "'>" . $row['saldo'] . "</td>";
                             echo "
                                 <td>
-                                    <div class='d-flex justify-content-center'>
-                                        <button type='button' class='btn btn-danger' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button>
-                                    </div>
+                                    <form action='atualizarQntd.php' method='POST'>
+                                        <div class='btnMod d-flex'>
+                                            <button type='submit' name='decrement' value='" . $row['cod'] . "' class='btn btn-danger' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button>
+
+                                            <input type='hidden' name='bd' value='" . $item . "'>
+                                            <input type='hidden' name='vfSaldo' value='" . $row['saldo'] . "'>                                           
+
+                                            <button type='submit' name='increment' value='" . $row['cod'] . "' class='btn btn-success' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> + 1 </button>
+                                        </div>
+                                    </form>
                                 </td>";
                         }
                         echo "</tr>";
