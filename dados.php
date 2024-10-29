@@ -62,8 +62,7 @@
                     ?>
                     <th scope="col">Estoque min</th>
                     <th scope="col">Saldo</th>
-                    <th scope="col" id='colsub' class="text-center px-2">Alterar</th>
-                    <!-- <th scope="col" id='colsub' class="text-center px-2">Adicionar</th> -->
+                    <th scope="col" id='colsub' class="formAdd text-center px-2" colspan=2>Alterar</th>
                 </tr>
             </thead>
             <tbody>              
@@ -91,20 +90,29 @@
                             echo "<td>" . $row['nome'] . "</td>";
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['estq_min'] . "</td>";
-                            echo "<td class='" . $saldoMenor . "'>" . $row['saldo'] . "</td>";
+                            echo "<td class='estClass " . $saldoMenor . "'>" . $row['saldo'] . "</td>";
                             echo "
                                 <td>
                                     <form action='atualizarQntd.php' method='POST'>
-                                        <div class='btnMod d-flex'>
-                                            <button type='submit' name='decrement' value='" . $row['cod'] . "' class='btn btn-danger' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button>
-                                            
-                                            <input type='hidden' name='bd' value='" . $item . "'>
-                                            <input type='hidden' name='vfSaldo' value='" . $row['saldo'] . "'>                                           
+                                        <div class='d-flex justify-content-around'>
+                                            <input class='inpAlter' min='1' type='number' value='1' name='qntdAlter'>
+                                            <button type='submit' name='increment' value='" . $row['cod'] . "' class='btn btn-success'>+</button>
 
-                                            <button type='submit' name='increment' value='" . $row['cod'] . "' class='btn btn-success' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> + 1 </button>
+                                            <input type='hidden' name='bd' value='" . $item . "'>
+                                            <input type='hidden' name='vfSaldo' value='" . $row['saldo'] . "'>  
                                         </div>
                                     </form>
                                 </td>";
+                            echo "
+                            <td>
+                                <form action='atualizarQntd.php' method='POST'>
+                                    <div class='d-flex'>                                         
+                                        <input type='hidden' name='bd' value='" . $item . "'>
+                                        <input type='hidden' name='vfSaldo' value='" . $row['saldo'] . "'>
+                                        <button type='submit' name='decrement' value='" . $row['cod'] . "' class='btn btn-danger'> - 1 </button>
+                                    </div>
+                                </form>
+                            </td>";
                         }
                         if($item == 'resistencia'){
                             echo "<td>" . sprintf('%03d', $row['cod']) . "</td>";
@@ -117,16 +125,25 @@
                             echo "
                                 <td>
                                     <form action='atualizarQntd.php' method='POST'>
-                                        <div class='btnMod d-flex'>
-                                            <button type='submit' name='decrement' value='" . $row['cod'] . "' class='btn btn-danger' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> - 1 </button>
+                                        <div class='d-flex justify-content-around'>
+                                            <input class='inpAlter' min='1' type='number' value='1' name='qntdAlter'>
+                                            <button type='submit' name='increment' value='" . $row['cod'] . "' class='btn btn-success'>+</button>
 
                                             <input type='hidden' name='bd' value='" . $item . "'>
-                                            <input type='hidden' name='vfSaldo' value='" . $row['saldo'] . "'>                                           
-
-                                            <button type='submit' name='increment' value='" . $row['cod'] . "' class='btn btn-success' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: .75rem;'> + 1 </button>
+                                            <input type='hidden' name='vfSaldo' value='" . $row['saldo'] . "'>  
                                         </div>
                                     </form>
                                 </td>";
+                            echo "
+                            <td>
+                                <form action='atualizarQntd.php' method='POST'>
+                                    <div class='d-flex'>                                         
+                                        <input type='hidden' name='bd' value='" . $item . "'>
+                                        <input type='hidden' name='vfSaldo' value='" . $row['saldo'] . "'>
+                                        <button type='submit' name='decrement' value='" . $row['cod'] . "' class='btn btn-danger'> - 1 </button>
+                                    </div>
+                                </form>
+                            </td>";
                         }
                         echo "</tr>";
                     }

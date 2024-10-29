@@ -46,11 +46,19 @@ form {
 
 .btnMod {
     display: flex;
-    justify-content: space-evenly;
 }
 
 .btn {
     min-width: 50px;
     padding: 0.3rem 0;
     margin: 0 0.2rem;
+}
+
+.inpAlter {
+    background-color: transparent;
+    outline: none;
+    width: 40px;
+    border: none;
+    text-align: center;
+    margin: 0 0.5rem;
 }
