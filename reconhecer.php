@@ -2,7 +2,6 @@
     include('conexao.php');
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $verif= 0;
         foreach($_POST as $key => $value){
             if(strpos($key,'btn') === 0){
                 $btn = "acessar";
