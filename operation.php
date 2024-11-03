@@ -5,6 +5,8 @@
             include('dados.php');
         } else if ($btn == "cadastrar") {
             include('formCadastro.php');
+        } else if ($btn == "laminas"){
+            include('controleLaminas.php');    
         } else {
             echo "Invalido";
         }
