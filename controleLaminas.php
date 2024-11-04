@@ -14,7 +14,7 @@
         if($action == 'vira' && $number == 426) {
             $updSQL = 'UPDATE lamina SET lamina426 = 1 WHERE id = 1';
         } else if($action == 'vira' && $number == 427) {
-            $updSQL = 'UPDATE lamina SET lamina427 = 0 WHERE id = 1';
+            $updSQL = 'UPDATE lamina SET lamina427 = 1 WHERE id = 1';
         }
 
         $envSQL = $conn->query($updSQL);
@@ -27,16 +27,16 @@
         while($row = $selecionar->fetch_assoc()){
             if($row['lamina426'] == 0){
                 $nova426 = "btn-success";
-                $vl426 = "btn-info";
+                $vl426 = "btnDisab";
             } else {
-                $nova426 = "btn-info";
+                $nova426 = "btnDisab";
                 $vl426 = "btn-success";
             }
             if($row['lamina427'] == 0){
                 $nova427 = "btn-success";
-                $vl427 = "btn-info";
+                $vl427 = "btnDisab";
             } else {
-                $nova427 = "btn-info";
+                $nova427 = "btnDisab";
                 $vl427 = "btn-success";
             }
         }

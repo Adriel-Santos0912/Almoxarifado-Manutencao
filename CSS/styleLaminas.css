@@ -24,3 +24,18 @@ main {
 #card{
     background-color: #000000de;
 }
+
+.btn {
+    min-width: 100px;
+}
+
+.btnDisab {
+    border: 1px solid #dddddd;
+    color: #808080;
+}
+
+.btnDisab:hover {
+    border: 1px solid #dddddd;
+    background-color: #dddddd;
+    color: #808080;
+}

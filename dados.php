@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="CSS/styleForm.css">
     <title>Cadastrar Item</title>
 </head>
 <body>
     <div id="floatbtn" class='float-start p-1'>
-        <a href="index.html"><button class='btn btn-info btn-sm'>Voltar</button></a>
+        <a href="index.html"><button class='btn btn-info btn-sm p-1'>Voltar</button></a>
     </div>
     <header class="mb-5 d-flex">
         <?php
@@ -62,7 +62,8 @@
                     ?>
                     <th scope="col">Estoque min</th>
                     <th scope="col">Saldo</th>
-                    <th scope="col" id='colsub' class="formAdd text-center px-2" colspan=2>Alterar</th>
+                    <th scope="col" id='colsub' class="formAdd text-center px-2">Movimentar</th>
+                    <th scope="col" id='colsub'></th>
                 </tr>
             </thead>
             <tbody>              
@@ -100,19 +101,15 @@
 
                                             <input type='hidden' name='bd' value='" . $item . "'>
                                             <input type='hidden' name='vfSaldo' value='" . $row['saldo'] . "'>  
-                                        </div>
-                                    </form>
-                                </td>";
-                            echo "
-                            <td>
-                                <form action='atualizarQntd.php' method='POST'>
-                                    <div class='d-flex'>                                         
-                                        <input type='hidden' name='bd' value='" . $item . "'>
-                                        <input type='hidden' name='vfSaldo' value='" . $row['saldo'] . "'>
-                                        <button type='submit' name='decrement' value='" . $row['cod'] . "' class='btn btn-danger'> - 1 </button>
+
+                                            <button type='submit' name='decrement' value='" . $row['cod'] . "' class='btn btn-danger'> - </button>
                                     </div>
-                                </form>
-                            </td>";
+                                </td></form>";
+                            echo "<form action='edicao.php' method='GET'>
+                                    <td class='editar'>
+                                        <button type='submit' name='". $row['cod'] ."'>&#9998;</button
+                                    </td>
+                                </form>";
                         }
                         if($item == 'resistencia'){
                             echo "<td>" . sprintf('%03d', $row['cod']) . "</td>";
@@ -131,19 +128,12 @@
 
                                             <input type='hidden' name='bd' value='" . $item . "'>
                                             <input type='hidden' name='vfSaldo' value='" . $row['saldo'] . "'>  
+
+                                            <button type='submit' name='decrement' value='" . $row['cod'] . "' class='btn btn-danger'> - </button>
                                         </div>
                                     </form>
                                 </td>";
-                            echo "
-                            <td>
-                                <form action='atualizarQntd.php' method='POST'>
-                                    <div class='d-flex'>                                         
-                                        <input type='hidden' name='bd' value='" . $item . "'>
-                                        <input type='hidden' name='vfSaldo' value='" . $row['saldo'] . "'>
-                                        <button type='submit' name='decrement' value='" . $row['cod'] . "' class='btn btn-danger'> - 1 </button>
-                                    </div>
-                                </form>
-                            </td>";
+                            echo "<td class='editar'><button>L</button</td>";
                         }
                         echo "</tr>";
                     }
