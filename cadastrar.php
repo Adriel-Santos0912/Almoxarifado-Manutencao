@@ -35,14 +35,17 @@
                 
                         if($item == 'resistencia') {
                             $stmt = $conn->prepare("INSERT INTO $item(cod, nome, marca, tipo, medidas, estq_min, saldo) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                            $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, tipo, medidas, estq_min, saldo) VALUES (?, ?, ?, ?, ?, ?, ?)");
                             $stmt->bind_param("issssii", $codigo, $namePeca, $marca, $tipoRes, $medidas, $estqMin, $saldo);
+                            $stmtLog->bind_param("issssii", $codigo, $namePeca, $marca, $tipoRes, $medidas, $estqMin, $saldo);
                         } else {
                             $stmt = $conn->prepare("INSERT INTO $item(cod, nome, marca, estq_min, saldo) VALUES (?, ?, ?, ?, ?)");
+                            $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, estq_min, saldo) VALUES (?, ?, ?, NULL, NULL, ?, ?)");
                             $stmt->bind_param("issii", $codigo, $namePeca, $marca , $estqMin, $saldo);
+                            $stmtLog->bind_param("issii", $codigo, $namePeca, $marca, $estqMin, $saldo);
                         }
-                        
-                    if($stmt->execute()){
-                        echo "<script> alert('Item cadastrado com Sucesso!') </script>";
+
+                    if($stmt->execute() || $stmtLog->execute()){
                         echo '
                                 <h3 class="text-center border-bottom">Descrição do item</h3>
                                 <p>Código: ' . $codigo . '</p>
@@ -55,16 +58,21 @@
                             }
                             echo '<p>Estoque Minimo: ' . $estqMin . '</p>';
                             echo '<p>Quantidade: ' . $saldo . '</p>';
+
                             echo "
+                            <form action='operation.php' method='POST'>
                                 <div class='btnCadastro d-flex flex-column pt-1 pb-1'>
-                                    <a class='d-flex justify-content-center btn btn-warning mb-2 mt-2' href='HTML/form' . $item . '.html'>Cadastrar outro item</a>
+                                    <button class='d-flex justify-content-center btn btn-warning mb-2 mt-2' type='submit' name='btnRegister' value='" . $item . "'>Cadastrar outro item</button>
                                     <a class='d-flex justify-content-center btn btn-info mb-2 mt-2' href='index.html'>Voltar ao início</a>
-                                </div>";
+                                </div>
+                            </form>";
                         }
                     } else {
                         echo "ERRO: " . $stmt->error;
+                        echo "ERRO: " . $stmtLog->error;
                     }
                     $stmt-> close();
+                    $stmtLog-> close();
                     $conn->close();
                 ?>
                 </div>

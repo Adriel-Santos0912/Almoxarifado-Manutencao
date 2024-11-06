@@ -1,29 +1,22 @@
 <?php
-    include('conexao.php');
+include('conexao.php');
 
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        if(isset($_POST['ctrlLamina'])){
-            $btn = "laminas";
-        } else {
-            foreach($_POST as $key => $value){
-                if(strpos($key,'btn') === 0){
-                    $btn = "acessar";
-                    $item = ($key == 'btn1') ? 'ds2' :
-                            (($key == 'btn2') ? 'k18' :
-                            (($key == 'btn3') ? 'resistencia' : 'Undefined'));
-                    break;
-                }
-                if(strpos($key,'cadastro') === 0){
-                    $btn = "cadastrar";
-                    $item = ($key == 'cadastro1') ? 'ds2' :
-                            (($key == 'cadastro2') ? 'k18' :
-                            (($key == 'cadastro3') ? 'resistencia' : 'Undefined'));
-                    break;
-                }
-            }
-            
-            $selected = ($item == 'ds2') ? 'DS-2' :
-                        (($item == 'k18') ? 'K-18' :
-                        (($item == 'resistencia') ? 'Resistencia' : 'Undefined'));
-        }
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(isset($_POST['btnAcess'])){
+        $btn = "acessar";
+        $item = $_POST['btnAcess'];
+    } else if(isset($_POST['btnRegister'])){
+        $btn = "cadastrar";
+        $item = $_POST['btnRegister'];
+    } else if(isset($_POST['btnLamina'])){
+        $btn = "laminas";
+    } else {
+        echo "ERRO INESPERADO!";
     }
+
+    if($btn == "acessar" || $btn == "cadastrar"){
+        $selected = ($item == 'ds2') ? 'DS-2' :
+        (($item == 'k18') ? 'K-18' :
+        (($item == 'resistencia') ? 'Resistencia' : 'Undefined'));
+    }
+}

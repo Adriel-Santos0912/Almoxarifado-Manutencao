@@ -23,7 +23,7 @@
     </header>
     <main class="d-flex justify-content-center">
         <form class="container" method="POST" action="cadastrar.php">
-        <div class="row">
+            <div class="row">
                 <!-- o Código da peça pode incluir Letras e Numeros -->
                 <div class="col-12 col-xl-6">
                     <label for="codigo">Código:</label><br>
@@ -70,24 +70,24 @@
                         }   
                     }
                 ?>              
-            <?php
-                include('reconhecer.php');
+                <?php
+                    include('reconhecer.php');
 
-                if($_SERVER["REQUEST_METHOD"] == "POST"){
-                    if($item == 'ds2'){
-                        echo "<input type='hidden' value='ds2' name='maq'>";
-                    } else if($item == 'k18') {
-                        echo "<input type='hidden' value='k18' name='maq'>";
-                    } else if($item == 'resistencia') {
-                        echo "<input type='hidden' value='resistencia' name='maq'>";
-                    } else {
-                        echo "ERRO! Valor invalido";
-                    }   
-                }
-            ?>
-            <div class='d-flex justify-content-center mt-5' id="enviar">
-                <input class="btn btn-info py-2 ps-5 pe-5" type="submit" value="Enviar">
-            </div>
+                    if($_SERVER["REQUEST_METHOD"] == "POST"){
+                        if($item == 'ds2'){
+                            echo "<input type='hidden' value='ds2' name='maq'>";
+                        } else if($item == 'k18') {
+                            echo "<input type='hidden' value='k18' name='maq'>";
+                        } else if($item == 'resistencia') {
+                            echo "<input type='hidden' value='resistencia' name='maq'>";
+                        } else {
+                            echo "ERRO! Valor invalido";
+                        }   
+                    }
+                ?>
+                <div class='d-flex justify-content-center mt-5' id="enviar">
+                    <input class="btn btn-info py-2 ps-5 pe-5" type="submit" value="Enviar">
+                </div>
             </div>
         </form>
     </main>

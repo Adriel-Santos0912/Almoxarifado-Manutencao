@@ -20,27 +20,21 @@
     <main>
         <div class="container">
             <form class="row d-flex justify-content-between" action="operation.php" method="POST">
-                
                 <!-- Maquina Ds-2 -->
                 <article class="col-12 col-xl-4 p-3 p-xl-0 d-flex justify-content-center">
-
                     <!-- Card -->
                     <div class="card">
                         <img src="Img/DS-2 whiteBG.png" class="card-img-top" alt="icone da Máquina-ds2">
-                        
                         <!-- card-body -->
                         <div class="card-body pt-0 ">
                             <h5 class="card-title text-center">Máquina DS-2</h5>
                             <br>
-
                             <!-- botoes -->
                             <div class="d-flex flex-column">
-                                <div class="d-block d-flex justify-content-center pb-2">
-                                    <input class="btn btn-info" type="submit" value="Acessar" name="btn1"
-                                    alt="botão de Acessar planilha da máquina Ds-2">
+                                <div class="d-block d-flex justify-content-center flex-column pb-2">
+                                    <button class="btn btn-info mb-2 mx-4" type="submit" name="btnAcess" value="ds2">Acessar</button>
+                                    <button class="btn btn-success mx-4" type="submit" name="btnRegister" value="ds2">Cadastrar Peças</button>
                                 </div>
-                                <input class="btn btn-success mx-3" type="submit" value="Cadastrar Peças"
-                                    name="cadastro1" alt="botão de Acessar cadastro da máquina Ds-2">
                             </div>
                         </div>
                     </div>
@@ -48,24 +42,19 @@
 
                 <!-- Maquina K-18 -->
                 <article class="col-12 col-xl-4 p-3 p-xl-0 d-flex justify-content-center ">
-
                     <!-- Card -->
                     <div class="card">
                         <img src="Img/K-18 whiteBG.png" class="card-img-top" alt="icone da Máquina-k18">
-                        
                         <!-- card-body -->
                         <div class="card-body pt-0">
                             <h5 class="card-title text-center">Máquina K-18</h5>
                             <br>
-
                             <!-- botoes -->
                             <div class="d-flex flex-column">
-                                <div class="d-block d-flex justify-content-center pb-2">
-                                    <input class="btn btn-info " type="submit" value="Acessar" name="btn2"
-                                        alt="botão de Acessar planilha da máquina K-18">
+                                <div class="d-block d-flex justify-content-center flex-column pb-2">
+                                    <button class="btn btn-info mb-2 mx-4" type="submit" name="btnAcess" value="k18" >Acessar</button>
+                                    <button class="btn btn-success mx-4" type="submit" name="btnRegister" value="k18">Cadastrar Peças</button>
                                 </div>
-                                <input class="btn btn-success mx-3" type="submit" value="Cadastrar Peças"
-                                    name="cadastro2" alt="botão de Acessar cadastro da máquina K-18">
                             </div>
                         </div>
                     </div>
@@ -73,34 +62,29 @@
 
                 <!-- Resistencias -->
                 <article class="col-12 col-xl-4 p-3 p-xl-0 d-flex justify-content-center">
-
                     <!-- Card -->
                     <div class="card">
                         <img src="Img/Resistencia whiteBG.png" class="card-img-top" alt="icone da Resistencia">
-
                         <!-- card-body -->
                         <div class="card-body pt-0">
                             <h5 class="card-title text-center">Resistência</h5>
                             <br>
-
                             <!-- botoes -->
                             <div class="d-flex flex-column">
-                                <div class="d-flex justify-content-center pb-2">
-                                    <input class="btn btn-info" type="submit" value="Acessar" name="btn3"
-                                    alt="botão de Acessar planilha da Resistência">
+                                <div class="d-flex justify-content-center flex-column pb-2">
+                                    <button class="btn btn-info mb-2 mx-4" type="submit" name="btnAcess" value="resistencia">Acessar</button>
+                                    <button class="btn btn-success mx-4" type="submit" name="btnRegister" value="resistencia">Cadastrar Peças</button>
                                 </div>
-                                <input class="btn btn-success mx-3" type="submit" value="Cadastrar Peças"
-                                    name="cadastro3" alt="botão de Acessar cadastro da Resistência">
                             </div>
                         </div>
                     </div>
                 </article>
 
                 <div class="col-12 pt-3 mb-5 mb-xl-1 d-flex justify-content-center">
-                    <div class="btn btn-success">
-                        <input type="submit" class="btn btn-success btn-lg" name="ctrlLamina" value="Controle de Lâminas">
-                        <img src="Img/estilete.png" width="40px" height="40px" alt="">
-                    </div>
+                    <button class="btn btn-success btn-lg" type="submit" name="btnLamina" value="ctrlLamina">
+                        Controle de Lâminas
+                        <img src="Img/estilete.png" width="40rem" height="30rem" alt="">
+                    </button>
                 </div>
             </form>
         </div>

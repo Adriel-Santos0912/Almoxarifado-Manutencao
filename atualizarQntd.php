@@ -1,43 +1,37 @@
 <?php
-    include('conexao.php');
+include('conexao.php');
 
-    $bdSelect = $_POST['bd'];
-    $saldo = $_POST['vfSaldo'];
+$bdSelect = $_POST['bd'];
+$saldo = $_POST['vfSaldo'];
 
-    if(isset($_POST['decrement'])){
-        if($saldo > 0){
-            $operacao = $_POST['decrement'];
-            $qntdIncr = $_POST['qntdAlter'];
-            $stmt = $conn->prepare("UPDATE $bdSelect SET saldo = saldo - $qntdIncr WHERE cod = ?");
-            $stmt->bind_param("i", $operacao);
-            $stmt->execute(); 
-        } else {
-            echo "<script> alert('SALDO ZERADO!" . '\n' . "Operação não realizada') </script>";
-        }
-    } else if(isset($_POST['increment'])) {
-        $operacao = $_POST['increment'];
-        $qntdIncr = $_POST['qntdAlter'];
-        $stmt = $conn->prepare("UPDATE $bdSelect SET saldo = saldo + $qntdIncr WHERE cod = ?");   
+if(isset($_POST['decrement'])){
+    $qntdIncr = $_POST['qntdAlter'];
+    if($saldo > 0 && $qntdIncr <= $saldo){
+        $operacao = $_POST['decrement'];
+        $stmt = $conn->prepare("UPDATE $bdSelect SET saldo = saldo - $qntdIncr WHERE cod = ?");
         $stmt->bind_param("i", $operacao);
         $stmt->execute(); 
+    } else {
+        echo "<script> alert('SALDO ZERADO OU INSUFICIENTE!" . '\n' . "Operação não realizada') </script>";
     }
+} else if(isset($_POST['increment'])) {
+    $operacao = $_POST['increment'];
+    $qntdIncr = $_POST['qntdAlter'];
+    $stmt = $conn->prepare("UPDATE $bdSelect SET saldo = saldo + $qntdIncr WHERE cod = ?");   
+    $stmt->bind_param("i", $operacao);
+    $stmt->execute(); 
+}
 
-  
+echo "
+<form id='select' action='operation.php' method='POST'>
+    <input type='hidden' name='btnAcess' value='" . $bdSelect . "'>
+</form>
+";
 
-    $item = ($bdSelect == 'ds2') ? 'btn1' :
-    (($bdSelect == 'k18') ? 'btn2' :
-    (($bdSelect == 'resistencia') ? 'btn3' : 'Undefined'));
-
-    echo "
-    <form id='select' action='operation.php' method='POST'>
-        <input type='hidden' name='" . $item . "'>
-    </form>
-    ";
-
-    echo "
-    <script>
-        document.querySelector('#select').submit()
-    </script>
-    "; 
+echo "
+<script>
+    document.querySelector('#select').submit()
+</script>
+"; 
 
 

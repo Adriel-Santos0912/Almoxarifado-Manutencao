@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" defer></script>
     <link rel="stylesheet" href="CSS/styleForm.css">
     <title>Cadastrar Item</title>
 </head>
@@ -30,16 +30,13 @@
                 <form action='operation.php' method='POST'>
                     <ul class='nav nav-tabs d-flex justify-content-center'>
                         <li class='nav-item'>
-                            <input class='nav-link " . $headDs2 . " text-dark' type='submit' value='DS-2' name='btn1'
-                            alt='botão de Acessar planilha da máquina K-18'>
+                            <button class='nav-link " . $headDs2 . " text-dark' type='submit' name='btnAcess' value='ds2'>DS-2</button>
                         </li>
                         <li class='nav-item'>
-                            <input class='nav-link " . $headK18 . "  text-dark' type='submit' value='K-18' name='btn2'
-                            alt='botão de Acessar planilha da máquina K-18'>
+                            <button class='nav-link " . $headK18 . " text-dark' type='submit' name='btnAcess' value='k18'>K-18</button>
                         </li>
                         <li class='nav-item'>
-                            <input class='nav-link " . $headRes . "  text-dark' type='submit' value='Resistência' name='btn3'
-                            alt='botão de Acessar planilha da Resistência'>
+                            <button class='nav-link " . $headRes . " text-dark' type='submit' name='btnAcess' value='resistencia'>Resistência</button>
                         </li>  
                     </il>      
                 </form>         
@@ -107,7 +104,8 @@
                                 </td></form>";
                             echo "<form action='edicao.php' method='GET'>
                                     <td class='editar'>
-                                        <button type='submit' name='". $row['cod'] ."'>&#9998;</button
+                                        <button type='submit' name='edicao' value='". $row['cod'] ."'>&#9998;</button>
+                                        <input type='hidden' name='opcao' value='". $item . "'>
                                     </td>
                                 </form>";
                         }
