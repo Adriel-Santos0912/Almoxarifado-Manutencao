@@ -4,6 +4,15 @@ include('conexao.php');
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $codigo = $_GET['edicao'];
     $item = $_GET['opcao'];
+
+    if($item == 'resistencia'){
+        $dataSQL2 = "SELECT cod, nome, marca, medidas, tipo, estq_min, saldo from $item WHERE cod= '$codigo'";
+    } else {
+        $dataSQL2 = "SELECT cod, nome, marca, estq_min, saldo from $item WHERE cod= '$codigo'";
+    }
+
+    $res2 = $conn->query($dataSQL2);
+
     if($item == 'resistencia'){
         $dataSQL = "SELECT cod, nome, marca, medidas, tipo, saldo_final, alteracao from log WHERE cod= '$codigo' AND equipamento = '$item'";
     } else {
@@ -29,10 +38,46 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     <div id="floatbtn" class='float-start p-1'>
         <a href="index.html"><button class='btn btn-info btn-sm p-1'>Voltar</button></a>
     </div>
-    <header class="bg-dark">
-
+    <header class="bg-dark d-flex justify-content-center align-items-center">
+        <h1 class="text-white">Histórico de mudanças</h1>
     </header>
     <main>
+    <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Nome da Peça</th>
+                    <th scope="col">Marca da Peça</th>
+                    <?php
+                        if($item == 'resistencia'){
+                            echo "<th scope='col'>Tipo</th>"; 
+                            echo "<th scope='col'>Medidas</th>";  
+                        }
+                    ?>
+                    <th scope="col">Estoque mínimo</th>
+                    <th scope="col">Saldo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                    if($res2->num_rows > 0){
+                        while($row = $res2->fetch_assoc()){
+                            echo "<tr>";
+                            echo "<td>" . $row['cod'] . "</td>";
+                            echo "<td>" . $row['nome'] . "</td>";
+                            echo "<td>" . $row['marca'] . "</td>";
+                            if($item == 'resistencia'){
+                            echo "<td>" . $row['tipo'] . "</td>";
+                            echo "<td>" . $row['medidas'] ."</td>";
+                            }
+                            echo "<td>" . $row['estq_min'] . "</td>";
+                            echo "<td>" . $row['saldo'] . "</td><br>";
+                            echo "</tr>";
+                        }
+                    }
+                ?>
+            </tbody>
+        </table>
         <table class="table table-striped table-bordered">
             <thead class="table-dark">
                 <tr>
