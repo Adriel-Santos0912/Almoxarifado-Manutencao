@@ -100,8 +100,9 @@
                                             <input type='hidden' name='vfSaldo' value='" . $row['saldo'] . "'>  
 
                                             <button type='submit' name='decrement' value='" . $row['cod'] . "' class='btn btn-danger'> - </button>
-                                    </div>
-                                </td></form>";
+                                        </div>
+                                    </form>
+                                </td>";
                             echo "<form action='edicao.php' method='GET'>
                                     <td class='editar'>
                                         <button type='submit' name='edicao' value='". $row['cod'] ."'>&#9998;</button>
@@ -131,7 +132,12 @@
                                         </div>
                                     </form>
                                 </td>";
-                            echo "<td class='editar'><button>L</button</td>";
+                                echo "<form action='edicao.php' method='GET'>
+                                        <td class='editar'>
+                                            <button type='submit' name='edicao' value='". $row['cod'] ."'>&#9998;</button>
+                                            <input type='hidden' name='opcao' value='". $item . "'>
+                                        </td>
+                                    </form>";
                         }
                         echo "</tr>";
                     }

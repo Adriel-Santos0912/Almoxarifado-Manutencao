@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,17 +35,13 @@
                 
                         if($item == 'resistencia') {
                             $stmt = $conn->prepare("INSERT INTO $item(cod, nome, marca, tipo, medidas, estq_min, saldo) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                            $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, tipo, medidas, estq_min, saldo) VALUES (?, ?, ?, ?, ?, ?, ?)");
                             $stmt->bind_param("issssii", $codigo, $namePeca, $marca, $tipoRes, $medidas, $estqMin, $saldo);
-                            $stmtLog->bind_param("issssii", $codigo, $namePeca, $marca, $tipoRes, $medidas, $estqMin, $saldo);
                         } else {
                             $stmt = $conn->prepare("INSERT INTO $item(cod, nome, marca, estq_min, saldo) VALUES (?, ?, ?, ?, ?)");
-                            $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, estq_min, saldo) VALUES (?, ?, ?, NULL, NULL, ?, ?)");
                             $stmt->bind_param("issii", $codigo, $namePeca, $marca , $estqMin, $saldo);
-                            $stmtLog->bind_param("issii", $codigo, $namePeca, $marca, $estqMin, $saldo);
                         }
 
-                    if($stmt->execute() || $stmtLog->execute()){
+                    if($stmt->execute()){
                         echo '
                                 <h3 class="text-center border-bottom">Descrição do item</h3>
                                 <p>Código: ' . $codigo . '</p>
@@ -69,10 +65,8 @@
                         }
                     } else {
                         echo "ERRO: " . $stmt->error;
-                        echo "ERRO: " . $stmtLog->error;
                     }
                     $stmt-> close();
-                    $stmtLog-> close();
                     $conn->close();
                 ?>
                 </div>
