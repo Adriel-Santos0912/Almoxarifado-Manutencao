@@ -51,13 +51,15 @@ if(isset($_POST['decrement'])){
         $stmt->execute(); 
 }
 
+$dataModificacao = date('Y-m-d H:i:s');
+
 if($bdSelect == 'resistencia'){
-    $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_final, equipamento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmtLog->bind_param("isssssis", $codigo, $namePeca, $marca, $medidas, $tipo, $valAlterado, $saldoFinal, $bdSelect);
+    $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_final, equipamento, data_modificacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmtLog->bind_param("isssssiss", $codigo, $namePeca, $marca, $medidas, $tipo, $valAlterado, $saldoFinal, $bdSelect, $dataModificacao);
     $stmtLog->execute();
 } else {
-    $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_final, equipamento) VALUES (?, ?, ?, NULL, NULL, ?, ?, ?)");
-    $stmtLog->bind_param("isssis", $codigo, $namePeca, $marca, $valAlterado, $saldoFinal, $bdSelect);
+    $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_final, equipamento, data_modificacao) VALUES (?, ?, ?, NULL, NULL, ?, ?, ?, ?)");
+    $stmtLog->bind_param("isssiss", $codigo, $namePeca, $marca, $valAlterado, $saldoFinal, $bdSelect, $dataModificacao);
     $stmtLog->execute();
 }
 

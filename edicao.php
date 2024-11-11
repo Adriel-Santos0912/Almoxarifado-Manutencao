@@ -12,13 +12,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     }
 
     $res2 = $conn->query($dataSQL2);
-
-    if($item == 'resistencia'){
-        $dataSQL = "SELECT cod, nome, marca, medidas, tipo, saldo_final, alteracao from log WHERE cod= '$codigo' AND equipamento = '$item'";
-    } else {
-        $dataSQL = "SELECT cod, nome, marca, saldo_final, alteracao from log WHERE cod= '$codigo' AND equipamento = '$item'";
-    }
-    $res = $conn->query($dataSQL);
 }
 ?>
 
@@ -43,76 +36,88 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     </header>
     <main>
     <table class="table table-striped table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">Codigo</th>
-                    <th scope="col">Nome da Peça</th>
-                    <th scope="col">Marca da Peça</th>
-                    <?php
-                        if($item == 'resistencia'){
-                            echo "<th scope='col'>Tipo</th>"; 
-                            echo "<th scope='col'>Medidas</th>";  
-                        }
-                    ?>
-                    <th scope="col">Estoque mínimo</th>
-                    <th scope="col">Saldo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                    if($res2->num_rows > 0){
-                        while($row = $res2->fetch_assoc()){
-                            echo "<tr>";
-                            echo "<td>" . $row['cod'] . "</td>";
-                            echo "<td>" . $row['nome'] . "</td>";
-                            echo "<td>" . $row['marca'] . "</td>";
-                            if($item == 'resistencia'){
-                            echo "<td>" . $row['tipo'] . "</td>";
-                            echo "<td>" . $row['medidas'] ."</td>";
-                            }
-                            echo "<td>" . $row['estq_min'] . "</td>";
-                            echo "<td>" . $row['saldo'] . "</td><br>";
-                            echo "</tr>";
-                        }
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Codigo</th>
+                <th scope="col">Nome da Peça</th>
+                <th scope="col">Marca da Peça</th>
+                <?php
+                    if($item == 'resistencia'){
+                        echo "<th scope='col'>Tipo</th>"; 
+                        echo "<th scope='col'>Medidas</th>";  
                     }
                 ?>
-            </tbody>
-        </table>
-        <table class="table table-striped table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">Codigo</th>
-                    <th scope="col">Nome da Peça</th>
-                    <th scope="col">Marca da Peça</th>
-                    <?php
+                <th scope="col">Estoque mínimo</th>
+                <th scope="col">Saldo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php 
+                if($res2->num_rows > 0){
+                    while($row = $res2->fetch_assoc()){
+                        echo "<tr>";
+                        echo "<td>" . $row['cod'] . "</td>";
+                        echo "<td>" . $row['nome'] . "</td>";
+                        echo "<td>" . $row['marca'] . "</td>";
                         if($item == 'resistencia'){
-                            echo "<th scope='col'>Tipo</th>"; 
-                            echo "<th scope='col'>Medidas</th>";  
+                        echo "<td>" . $row['tipo'] . "</td>";
+                        echo "<td>" . $row['medidas'] ."</td>";
                         }
-                    ?>
-                    <th scope="col">Alteração</th>
-                    <th scope="col">Saldo Final</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                    if($res->num_rows > 0){
-                        while($row = $res->fetch_assoc()){
-                            echo "<tr>";
-                            echo "<td>" . $row['cod'] . "</td>";
-                            echo "<td>" . $row['nome'] . "</td>";
-                            echo "<td>" . $row['marca'] . "</td>";
-                            if($item == 'resistencia'){
-                            echo "<td>" . $row['tipo'] . "</td>";
-                            echo "<td>" . $row['medidas'] ."</td>";
-                            }
-                            echo "<td>" . $row['alteracao'] . "</td>";
-                            echo "<td>" . $row['saldo_final'] . "</td><br>";
-                            echo "</tr>";
-                        }
+                        echo "<td>" . $row['estq_min'] . "</td>";
+                        echo "<td>" . $row['saldo'] . "</td><br>";
+                        echo "</tr>";
                     }
-                ?>
-            </tbody>
+                }
+            ?>
+        </tbody>
         </table>
+        <section>
+            <h3>Histórico</h3>
+            <hr>
+                <?php
+                $ultima_modificacao = NULL;
+                $dataHoraLog = "SELECT saldo_final, alteracao, data_modificacao
+                                FROM log AS l1
+                                WHERE l1.data_modificacao = (
+                                    SELECT MAX(l2.data_modificacao)
+                                    FROM log AS l2
+                                    WHERE DATE(l2.data_modificacao) = DATE(l1.data_modificacao)
+                                ) ORDER BY DATE(l1.data_modificacao) ASC";
+                $resDataHora = $conn->query($dataHoraLog);
+
+                $datasLog = "SELECT DATE(data_modificacao) AS data
+                            FROM log
+                            GROUP BY DATE(data_modificacao)";
+                $resData = $conn->query($datasLog);
+
+                if($resData->num_rows > 0){
+                    while($row = $resData->fetch_assoc()){
+                        $dataTransformada = strtotime($row['data']); 
+                        $apenasData = date('Y-m-d', $dataTransformada);
+                        $logSQL = "SELECT cod, saldo_final, alteracao, data_modificacao from log 
+                                    WHERE DATE(data_modificacao) = '$row[data]'";
+                        $resLog = $conn->query($logSQL);
+                        $dataBR = date('d/m/Y', $dataTransformada);
+                        
+                        echo "<p>". $dataBR ."</p>";
+
+                        if($resDataHora->num_rows > 0){
+                            if($row = $resDataHora->fetch_assoc()){
+                                $ultima_modificacao = $row['saldo_final'];
+                                echo "<p>Saldo Final do dia: ". $ultima_modificacao ."</p>";
+                            }
+                        }
+                        if($resLog->num_rows > 0){
+                            while($row = $resLog->fetch_assoc()){
+                                echo "<p>". $row['alteracao'] ."</p>";
+                                // echo "<p>Saldo Final: ". $row['saldo_final'] ."</p>";
+                            }
+                        }
+                        echo "<hr>";
+                    }
+                }
+                ?>
+
+        </section>
 </body>
 </html>
