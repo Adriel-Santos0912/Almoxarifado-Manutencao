@@ -75,56 +75,94 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             <h3>Histórico</h3>
             <hr>
                 <?php
-                // PEGANDO DATA CRAVADA
-                $selectData = "SELECT cod, equipamento, saldo_final, data_modificacao, DATE(data_modificacao) AS dataa 
-                            FROM log AS ref
-                            WHERE cod = 15 AND equipamento = 'ds2' AND ref.data_modificacao = (
-                            SELECT MAX(data_modificacao)
-                            from log AS comp
-                            WHERE DATE(comp.data_modificacao) = DATE(ref.data_modificacao)
-                            ) GROUP BY cod, equipamento, saldo_final, data_modificacao, DATE(data_modificacao)
-                            ORDER BY DATE(data_modificacao) DESC";
-                $resData = $conn->query($selectData);
-                
+                // PEGANDO TODAS AS MODIFICAÇÕES
+                $selectData = "SELECT cod, equipamento, saldo_final, alteracao, data_modificacao, DATE(data_modificacao) AS dataa
+                            FROM log
+                            WHERE cod = ? AND equipamento = ?
+                            ORDER BY data_modificacao DESC";
+                $stmt = $conn->prepare($selectData);
+                $stmt->bind_param('ss', $codigo, $equipamento);
+                $stmt->execute();
+                $resData = $stmt->get_result();
+
+                $dataAtual = '';
                 if($resData->num_rows > 0){
                     while($row = $resData->fetch_assoc()){
-                        $dataAtual = $row['dataa'];
-                        // IMPRIMINDO DATA E SALDO FINAL --
-                        echo "<div>";
-                        echo"<h5>" . $row['dataa'] . "</h5>";
-                        echo "<p>Saldo final do dia: " . $row['saldo_final'] . "</p>";
-
-                        // ALTERACOES, HORAS E SALDO FINAL --
-                        $selectLog = "SELECT cod, saldo_final, alteracao, equipamento, data_modificacao, DATE(data_modificacao) AS apenas_data
-                        FROM log
-                        WHERE cod = 15
-                        GROUP BY cod, saldo_final, alteracao, equipamento, data_modificacao, DATE(data_modificacao)
-                        ORDER BY data_modificacao DESC";
-                        $resLog = $conn->query($selectLog);
-                        
-                        if($resLog->num_rows > 0){
-                            while($row = $resLog->fetch_assoc()){
-                                if($row['apenas_data'] == $dataAtual){
-                                    // FORMATANDO --
-                                    $dataTransformada = strtotime($row['data_modificacao']);
-                                    $hora = date('H:i', $dataTransformada);
-                                    $num = (int) $row['alteracao'];
-                                    // ESTRUTURA --
-                                    echo "<p>";
-                                    if($num > 0){
-                                        echo "[".$hora."] Adicionado: " . $row['alteracao'];
-                                    } else {
-                                        echo "[".$hora."] Removido: " . $row['alteracao'];
-                                    }
-                                    echo "</p>";
-                                    
-                                }
-                            }   
+                        if($dataAtual != $row['dataa']){
+                            if($dataAtual != ''){
+                                echo "</div><hr>";
+                            }
+                            $dataAtual = $row['dataa'];
+                            echo "<div>";
+                            echo "<h5>" . $dataAtual . "</h5>";
+                            echo "<p>Saldo final do dia: " . $row['saldo_final'] . "</p>";
                         }
-                        echo "</div>";
-                        echo "<hr>";
+                        // FORMATANDO
+                        $dataTransformada = strtotime($row['data_modificacao']);
+                        $hora = date('H:i', $dataTransformada);
+                        $num = (int) $row['alteracao'];
+
+                        // ESTRUTURA
+                        echo "<p>";
+                        if($num > 0){
+                            echo "[" . $hora . "] Adicionado: " . $row['alteracao'];
+                        } else{
+                            echo "[" . $hora . "] Removido: " . $row['alteracao'];
+                        }
+                        echo "</p>";
                     }
+                    echo "</div>";
                 }
+                // // PEGANDO DATA CRAVADA
+                // $selectData = "SELECT cod, equipamento, saldo_final, data_modificacao, DATE(data_modificacao) AS dataa 
+                //             FROM log AS ref
+                //             WHERE cod = $codigo AND equipamento = '$equipamento' AND ref.data_modificacao = (
+                //             SELECT MAX(data_modificacao)
+                //             from log AS comp
+                //             WHERE DATE(comp.data_modificacao) = DATE(ref.data_modificacao)
+                //             ) GROUP BY cod, equipamento, saldo_final, data_modificacao, DATE(data_modificacao)
+                //             ORDER BY DATE(data_modificacao) DESC";
+                // $resData = $conn->query($selectData);
+                
+                // if($resData->num_rows > 0){
+                //     while($row = $resData->fetch_assoc()){
+                //         $dataAtual = $row['dataa'];
+                //         // IMPRIMINDO DATA E SALDO FINAL --
+                //         echo "<div>";
+                //         echo"<h5>" . $dataAtual . "</h5>";
+                //         echo "<p>Saldo final do dia: " . $row['saldo_final'] . "</p>";
+
+                //         // ALTERACOES, HORAS E SALDO FINAL --
+                //         $selectLog = "SELECT cod, saldo_final, alteracao, equipamento, data_modificacao, DATE(data_modificacao) AS apenas_data
+                //         FROM log
+                //         WHERE cod = $codigo AND equipamento = '$equipamento'
+                //         GROUP BY cod, saldo_final, alteracao, equipamento, data_modificacao, DATE(data_modificacao)
+                //         ORDER BY data_modificacao DESC";
+                //         $resLog = $conn->query($selectLog);
+                        
+                //         if($resLog->num_rows > 0){
+                //             while($row = $resLog->fetch_assoc()){
+                //                 if($row['apenas_data'] == $dataAtual){
+                //                     // FORMATANDO --
+                //                     $dataTransformada = strtotime($row['data_modificacao']);
+                //                     $hora = date('H:i', $dataTransformada);
+                //                     $num = (int) $row['alteracao'];
+                //                     // ESTRUTURA --
+                //                     echo "<p>";
+                //                     if($num > 0){
+                //                         echo "[".$hora."] Adicionado: " . $row['alteracao'];
+                //                     } else {
+                //                         echo "[".$hora."] Removido: " . $row['alteracao'];
+                //                     }
+                //                     echo "</p>";
+                                    
+                //                 }
+                //             }   
+                //         }
+                //         echo "</div>";
+                //         echo "<hr>";
+                //     }
+                // }
                 ?>
         </section>
 </body>

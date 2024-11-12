@@ -51,6 +51,7 @@ if(isset($_POST['decrement'])){
         $stmt->execute(); 
 }
 
+date_default_timezone_set('America/Sao_Paulo');
 $dataModificacao = date('Y-m-d H:i:s');
 
 if($bdSelect == 'resistencia'){
