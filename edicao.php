@@ -3,15 +3,15 @@ include('conexao.php');
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $codigo = $_GET['edicao'];
-    $item = $_GET['opcao'];
+    $equipamento = $_GET['opcao'];
 
-    if($item == 'resistencia'){
-        $dataSQL2 = "SELECT cod, nome, marca, medidas, tipo, estq_min, saldo from $item WHERE cod= '$codigo'";
+    // SELECT que pegará todos os dados da tabela do equipamento específico no SQL  -- Tabela no topo da página
+    if($equipamento == 'resistencia'){
+        $espelho = "SELECT cod, nome, marca, medidas, tipo, estq_min, saldo from $equipamento WHERE cod= '$codigo'";
     } else {
-        $dataSQL2 = "SELECT cod, nome, marca, estq_min, saldo from $item WHERE cod= '$codigo'";
+        $espelho = "SELECT cod, nome, marca, estq_min, saldo from $equipamento WHERE cod= '$codigo'";
     }
-
-    $res2 = $conn->query($dataSQL2);
+    $resEspelho = $conn->query($espelho);
 }
 ?>
 
@@ -42,7 +42,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 <th scope="col">Nome da Peça</th>
                 <th scope="col">Marca da Peça</th>
                 <?php
-                    if($item == 'resistencia'){
+                    if($equipamento == 'resistencia'){
                         echo "<th scope='col'>Tipo</th>"; 
                         echo "<th scope='col'>Medidas</th>";  
                     }
@@ -53,13 +53,13 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         </thead>
         <tbody>
             <?php 
-                if($res2->num_rows > 0){
-                    while($row = $res2->fetch_assoc()){
+                if($resEspelho->num_rows > 0){
+                    while($row = $resEspelho->fetch_assoc()){
                         echo "<tr>";
                         echo "<td>" . $row['cod'] . "</td>";
                         echo "<td>" . $row['nome'] . "</td>";
                         echo "<td>" . $row['marca'] . "</td>";
-                        if($item == 'resistencia'){
+                        if($equipamento == 'resistencia'){
                         echo "<td>" . $row['tipo'] . "</td>";
                         echo "<td>" . $row['medidas'] ."</td>";
                         }
@@ -75,49 +75,57 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             <h3>Histórico</h3>
             <hr>
                 <?php
-                $ultima_modificacao = NULL;
-                $dataHoraLog = "SELECT saldo_final, alteracao, data_modificacao
-                                FROM log AS l1
-                                WHERE l1.data_modificacao = (
-                                    SELECT MAX(l2.data_modificacao)
-                                    FROM log AS l2
-                                    WHERE DATE(l2.data_modificacao) = DATE(l1.data_modificacao)
-                                ) ORDER BY DATE(l1.data_modificacao) ASC";
-                $resDataHora = $conn->query($dataHoraLog);
-
-                $datasLog = "SELECT DATE(data_modificacao) AS data
-                            FROM log
-                            GROUP BY DATE(data_modificacao)";
-                $resData = $conn->query($datasLog);
-
+                // PEGANDO DATA CRAVADA
+                $selectData = "SELECT cod, equipamento, saldo_final, data_modificacao, DATE(data_modificacao) AS dataa 
+                            FROM log AS ref
+                            WHERE cod = 15 AND equipamento = 'ds2' AND ref.data_modificacao = (
+                            SELECT MAX(data_modificacao)
+                            from log AS comp
+                            WHERE DATE(comp.data_modificacao) = DATE(ref.data_modificacao)
+                            ) GROUP BY cod, equipamento, saldo_final, data_modificacao, DATE(data_modificacao)
+                            ORDER BY DATE(data_modificacao) DESC";
+                $resData = $conn->query($selectData);
+                
                 if($resData->num_rows > 0){
                     while($row = $resData->fetch_assoc()){
-                        $dataTransformada = strtotime($row['data']); 
-                        $apenasData = date('Y-m-d', $dataTransformada);
-                        $logSQL = "SELECT cod, saldo_final, alteracao, data_modificacao from log 
-                                    WHERE DATE(data_modificacao) = '$row[data]'";
-                        $resLog = $conn->query($logSQL);
-                        $dataBR = date('d/m/Y', $dataTransformada);
-                        
-                        echo "<p>". $dataBR ."</p>";
+                        $dataAtual = $row['dataa'];
+                        // IMPRIMINDO DATA E SALDO FINAL --
+                        echo "<div>";
+                        echo"<h5>" . $row['dataa'] . "</h5>";
+                        echo "<p>Saldo final do dia: " . $row['saldo_final'] . "</p>";
 
-                        if($resDataHora->num_rows > 0){
-                            if($row = $resDataHora->fetch_assoc()){
-                                $ultima_modificacao = $row['saldo_final'];
-                                echo "<p>Saldo Final do dia: ". $ultima_modificacao ."</p>";
-                            }
-                        }
+                        // ALTERACOES, HORAS E SALDO FINAL --
+                        $selectLog = "SELECT cod, saldo_final, alteracao, equipamento, data_modificacao, DATE(data_modificacao) AS apenas_data
+                        FROM log
+                        WHERE cod = 15
+                        GROUP BY cod, saldo_final, alteracao, equipamento, data_modificacao, DATE(data_modificacao)
+                        ORDER BY data_modificacao DESC";
+                        $resLog = $conn->query($selectLog);
+                        
                         if($resLog->num_rows > 0){
                             while($row = $resLog->fetch_assoc()){
-                                echo "<p>". $row['alteracao'] ."</p>";
-                                // echo "<p>Saldo Final: ". $row['saldo_final'] ."</p>";
-                            }
+                                if($row['apenas_data'] == $dataAtual){
+                                    // FORMATANDO --
+                                    $dataTransformada = strtotime($row['data_modificacao']);
+                                    $hora = date('H:i', $dataTransformada);
+                                    $num = (int) $row['alteracao'];
+                                    // ESTRUTURA --
+                                    echo "<p>";
+                                    if($num > 0){
+                                        echo "[".$hora."] Adicionado: " . $row['alteracao'];
+                                    } else {
+                                        echo "[".$hora."] Removido: " . $row['alteracao'];
+                                    }
+                                    echo "</p>";
+                                    
+                                }
+                            }   
                         }
+                        echo "</div>";
                         echo "<hr>";
                     }
                 }
                 ?>
-
         </section>
 </body>
 </html>
