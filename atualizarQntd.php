@@ -24,6 +24,7 @@ if($res->num_rows > 0){
         $namePeca = $row['nome'];
         $marca = $row['marca'];
         $saldoFinal = $row['saldo'];
+        $saldoComeco = $row['saldo'];
         if($bdSelect == 'resistencia'){
             $medidas = $row['medidas'];
             $tipo = $row['tipo'];
@@ -55,12 +56,12 @@ date_default_timezone_set('America/Sao_Paulo');
 $dataModificacao = date('Y-m-d H:i:s');
 
 if($bdSelect == 'resistencia'){
-    $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_final, equipamento, data_modificacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmtLog->bind_param("isssssiss", $codigo, $namePeca, $marca, $medidas, $tipo, $valAlterado, $saldoFinal, $bdSelect, $dataModificacao);
+    $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_comeco, saldo_final, equipamento, data_modificacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmtLog->bind_param("isssssiss", $codigo, $namePeca, $marca, $medidas, $tipo, $valAlterado, $saldoComeco, $saldoFinal, $bdSelect, $dataModificacao);
     $stmtLog->execute();
 } else {
-    $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_final, equipamento, data_modificacao) VALUES (?, ?, ?, NULL, NULL, ?, ?, ?, ?)");
-    $stmtLog->bind_param("isssiss", $codigo, $namePeca, $marca, $valAlterado, $saldoFinal, $bdSelect, $dataModificacao);
+    $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_comeco, saldo_final, equipamento, data_modificacao) VALUES (?, ?, ?, NULL, NULL, ?, ?, ?, ?, ?)");
+    $stmtLog->bind_param("isssiiss", $codigo, $namePeca, $marca, $valAlterado, $saldoComeco, $saldoFinal, $bdSelect, $dataModificacao);
     $stmtLog->execute();
 }
 

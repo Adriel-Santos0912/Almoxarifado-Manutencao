@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" defer></script>
@@ -60,7 +61,7 @@
                     <th scope="col">Estoque min</th>
                     <th scope="col">Saldo</th>
                     <th scope="col" id='colsub' class="formAdd text-center px-2">Movimentar</th>
-                    <th scope="col" id='colsub'></th>
+                    <th scope="col" id='colsub'><i class="bi bi-file-text"></i></th>
                 </tr>
             </thead>
             <tbody>              
@@ -103,9 +104,9 @@
                                         </div>
                                     </form>
                                 </td>";
-                            echo "<form action='edicao.php' method='GET'>
+                            echo "<form action='historico.php' method='GET'>
                                     <td class='editar'>
-                                        <button type='submit' name='edicao' value='". $row['cod'] ."'>&#9998;</button>
+                                        <button class='bi bi-box-arrow-up-right' type='submit' name='edicao' value='". $row['cod'] ."'></button>
                                         <input type='hidden' name='opcao' value='". $item . "'>
                                     </td>
                                 </form>";
@@ -132,9 +133,9 @@
                                         </div>
                                     </form>
                                 </td>";
-                                echo "<form action='edicao.php' method='GET'>
+                                echo "<form action='historico.php' method='GET'>
                                         <td class='editar'>
-                                            <button type='submit' name='edicao' value='". $row['cod'] ."'>&#9998;</button>
+                                            <button class='bi bi-box-arrow-up-right' type='submit' name='edicao' value='". $row['cod'] ."'></button>
                                             <input type='hidden' name='opcao' value='". $item . "'>
                                         </td>
                                     </form>";
@@ -143,9 +144,8 @@
                     }
                     echo "</tbody></table></main>";
                 }else {
-                    echo "0 Results!";
-                    $voltar = $_SERVER['HTTP_REFERER'];
-                    echo "<a href= . $voltar>Voltar</a>";
+                    echo "</tbody></table>";
+                    echo "<p class='lead text-center'>Nada Adicionado</p>";
                 }
                 $conn->close();
             ?>
