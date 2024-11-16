@@ -57,7 +57,7 @@ $dataModificacao = date('Y-m-d H:i:s');
 
 if($bdSelect == 'resistencia'){
     $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_comeco, saldo_final, equipamento, data_modificacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmtLog->bind_param("isssssiss", $codigo, $namePeca, $marca, $medidas, $tipo, $valAlterado, $saldoComeco, $saldoFinal, $bdSelect, $dataModificacao);
+    $stmtLog->bind_param("isssssiiss", $codigo, $namePeca, $marca, $medidas, $tipo, $valAlterado, $saldoComeco, $saldoFinal, $bdSelect, $dataModificacao);
     $stmtLog->execute();
 } else {
     $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_comeco, saldo_final, equipamento, data_modificacao) VALUES (?, ?, ?, NULL, NULL, ?, ?, ?, ?, ?)");

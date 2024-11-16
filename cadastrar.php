@@ -32,22 +32,24 @@
                             $medidas = $_POST['medidas'];
                             $tipoRes = $_POST['tipo'];
                         }
+                        date_default_timezone_set('America/Sao_Paulo');
+                        $dataCadastro = date('Y-m-d');
                 
                         if($item == 'resistencia') {
-                            $stmt = $conn->prepare("INSERT INTO $item(cod, nome, marca, tipo, medidas, estq_min, saldo) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                            $stmt->bind_param("issssii", $codigo, $namePeca, $marca, $tipoRes, $medidas, $estqMin, $saldo);
+                            $stmt = $conn->prepare("INSERT INTO $item(cod, nome, marca, tipo, medidas, estq_min, saldo, data_cadastro) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                            $stmt->bind_param("issssiis", $codigo, $namePeca, $marca, $tipoRes, $medidas, $estqMin, $saldo, $dataCadastro);
                         } else {
-                            $stmt = $conn->prepare("INSERT INTO $item(cod, nome, marca, estq_min, saldo) VALUES (?, ?, ?, ?, ?)");
-                            $stmt->bind_param("issii", $codigo, $namePeca, $marca , $estqMin, $saldo);
+                            $stmt = $conn->prepare("INSERT INTO $item(cod, nome, marca, estq_min, saldo, data_cadastro) VALUES (?, ?, ?, ?, ?, ?)");
+                            $stmt->bind_param("issiis", $codigo, $namePeca, $marca , $estqMin, $saldo, $dataCadastro);
                         }
 
-                    if($stmt->execute()){
-                        echo '
-                                <h3 class="text-center border-bottom">Descrição do item</h3>
-                                <p>Código: ' . $codigo . '</p>
-                                <p>Peça: ' . $namePeca . '</p>
-                                <p>Marca: ' . $marca . '</p>
-                            ';
+                        if($stmt->execute()){
+                            echo '
+                                    <h3 class="text-center border-bottom">Descrição do item</h3>
+                                    <p>Código: ' . $codigo . '</p>
+                                    <p>Peça: ' . $namePeca . '</p>
+                                    <p>Marca: ' . $marca . '</p>
+                                ';
                             if($item == 'resistencia'){
                                 echo '<p>Tipo Resistência: ' . $tipoRes . '</p>';
                                 echo '<p>Medidas: ' . $medidas . '</p>';

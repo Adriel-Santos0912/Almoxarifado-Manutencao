@@ -7,11 +7,13 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
     // SELECT que pegará todos os dados da tabela do equipamento específico no SQL  -- Tabela no topo da página
     if($equipamento == 'resistencia'){
-        $espelho = "SELECT cod, nome, marca, medidas, tipo, estq_min, saldo from $equipamento WHERE cod= '$codigo'";
+        $espelho = "SELECT cod, nome, marca, medidas, tipo, estq_min, saldo, data_cadastro from $equipamento WHERE cod= '$codigo'";
     } else {
-        $espelho = "SELECT cod, nome, marca, estq_min, saldo from $equipamento WHERE cod= '$codigo'";
+        $espelho = "SELECT cod, nome, marca, estq_min, saldo, data_cadastro from $equipamento WHERE cod= '$codigo'";
     }
     $resEspelho = $conn->query($espelho);
+
+
 }
 ?>
 
@@ -55,14 +57,18 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 ?>
                 <th scope="col">Estoque mínimo</th>
                 <th scope="col">Saldo</th>
+                <th scope="col">Cadastrado em</th>
             </tr>
         </thead>
         <tbody>
             <?php 
                 if($resEspelho->num_rows > 0){
                     while($row = $resEspelho->fetch_assoc()){
+                        $transDataCadastro = strtotime($row['data_cadastro']);
+                        $dataCadastro = date('d/m/Y', $transDataCadastro);
+
                         echo "<tr>";
-                        echo "<td>" . $row['cod'] . "</td>";
+                        echo "<td>" . sprintf('%03d', $row['cod']) . "</td>";
                         echo "<td>" . $row['nome'] . "</td>";
                         echo "<td>" . $row['marca'] . "</td>";
                         if($equipamento == 'resistencia'){
@@ -71,6 +77,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                         }
                         echo "<td>" . $row['estq_min'] . "</td>";
                         echo "<td>" . $row['saldo'] . "</td><br>";
+                        echo "<td>". $dataCadastro ."</td>";
                         echo "</tr>";
                     }
                 }
