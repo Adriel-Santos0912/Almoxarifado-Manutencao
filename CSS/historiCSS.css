@@ -1,0 +1,59 @@
+#floatbtn{
+    position: absolute;
+}
+
+main{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.table-dark th, td {
+    position: relative;
+    text-align: center;
+    max-width: 400px;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.table-dark td {
+    padding: 0 5rem;
+}
+
+.saldoFinal {
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+    margin: 0;
+}
+
+.historic_list li:nth-child(odd) {
+    background-color: rgb(243, 243, 243);
+}
+
+.historic_list li:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+.historic_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.historic_list li{
+    padding: 0.5rem;
+}
+
+span {
+    float: right;
+    margin-right: 0.2rem;
+    color: #686868;
+}
+
+.bi-file-text::before {
+    font-size: larger;
+}
+
+.bi-clock::before {
+    vertical-align: 0;
+    font-size: small;
+}

@@ -13,31 +13,31 @@
 </head>
 <body>
     <div id="floatbtn" class='float-start p-1'>
-        <a href="index.html"><button class='btn btn-info btn-sm p-1'>Voltar</button></a>
+        <a href="index.html" class='btn btn-outline-light px-3 py-2 mx-2 bi bi-house'></a>
     </div>
-    <header class="mb-5 d-flex">
+    <header class="mb-5 d-flex bg-dark">
         <?php
             if($item == 'ds2'){
                 $headDs2 = 'active';
-                $headK18 = $headRes = "";
+                $headK18 = $headRes = "text-light";
             } else if ($item == 'k18') {
                 $headK18 = 'active';
-                $headDs2 = $headRes = "";
+                $headDs2 = $headRes = "text-light";
             } else if ($item == 'resistencia') {
                 $headRes = 'active';
-                $headDs2 = $headK18 = "";
+                $headDs2 = $headK18 = "text-light";
             }
             echo " 
                 <form action='operation.php' method='POST'>
-                    <ul class='nav nav-tabs d-flex justify-content-center'>
+                    <ul class='nav nav-tabs d-flex justify-content-center mt-2'>
                         <li class='nav-item'>
-                            <button class='nav-link " . $headDs2 . " text-dark' type='submit' name='btnAcess' value='ds2'>DS-2</button>
+                            <button class='nav-link " . $headDs2 . "' type='submit' name='btnAcess' value='ds2'>DS-2</button>
                         </li>
                         <li class='nav-item'>
-                            <button class='nav-link " . $headK18 . " text-dark' type='submit' name='btnAcess' value='k18'>K-18</button>
+                            <button class='nav-link " . $headK18 . "' type='submit' name='btnAcess' value='k18'>K-18</button>
                         </li>
                         <li class='nav-item'>
-                            <button class='nav-link " . $headRes . " text-dark' type='submit' name='btnAcess' value='resistencia'>Resistência</button>
+                            <button class='nav-link " . $headRes . "' type='submit' name='btnAcess' value='resistencia'>Resistência</button>
                         </li>  
                     </il>      
                 </form>         

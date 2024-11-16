@@ -77,4 +77,8 @@ echo "
 </script>
 "; 
 
+$stmt->close();
+$stmtLog->close();
+$conn->close();
+
 
