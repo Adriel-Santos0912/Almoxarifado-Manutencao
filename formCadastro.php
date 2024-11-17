@@ -14,11 +14,11 @@
 <body class="bg-light">
     <header class="mb-5 bg-dark d-flex px-2">
         <div id="floatbtn" class='float-start p-1 my-1'>
-            <a href="index.html" class='btn btn-outline-light px-3 py-2  bi bi-house'></a>
+            <a href="index.html" class='btn btn-outline-light px-3 py-1 bi bi-house'></a>
         </div>
         <div id="h1" class="d-flex justify-content-center">
             <?php
-                echo "<h1 class='text-white text-center my-1'>Cadastro " . $selected . "</h1>";
+                echo "<h1 class='text-white text-center mb-0'>Cadastro " . $selected . "</h1>";
             ?>
         </div>
     </header>

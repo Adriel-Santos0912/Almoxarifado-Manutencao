@@ -7,6 +7,11 @@ main{
     margin: 0 auto;
 }
 
+.delete {
+    position: absolute;
+    right: 0;
+}
+
 .table-dark th, td {
     position: relative;
     text-align: center;
@@ -18,6 +23,22 @@ main{
 
 .table-dark td {
     padding: 0 5rem;
+}
+
+.editField {
+    border: none;
+    outline: none;
+    text-align: center;
+}
+
+.tdSmall {
+    max-width: 6em;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .saldoFinal {

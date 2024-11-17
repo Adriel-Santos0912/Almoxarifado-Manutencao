@@ -12,8 +12,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         $espelho = "SELECT cod, nome, marca, estq_min, saldo, data_cadastro from $equipamento WHERE cod= '$codigo'";
     }
     $resEspelho = $conn->query($espelho);
-
-
 }
 ?>
 
@@ -27,6 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" defer></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="CSS/historiCSS.css">
     <title>Cadastrar Item</title>
 </head>
@@ -41,6 +40,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     </div>   
     <header class="bg-dark d-flex justify-content-center align-items-center">
         <h1 class="text-white">Histórico de Movimentações</h1>
+        <div class="delete d-flex mx-2 gap-2">
+            <button type="button" id="btnEditar" class='btn btn-primary px-3 py-2 bi bi-pencil-square'></button>
+            <button type="button" id="editCheck" class="btn btn-success px-3 py-2 bi bi-check-lg" hidden disabled></button>
+            <button type="button" id="editDel" class="btn btn-danger px-3 py-2 bi bi-x-lg" hidden></button>
+            <button type="button" id="btTrash" class='btn btn-danger px-3 py-2 bi bi-trash3'></button>
+        </div>
     </header>
     <main>
     <table class="table table-striped table-bordered">
@@ -66,17 +71,30 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                     while($row = $resEspelho->fetch_assoc()){
                         $transDataCadastro = strtotime($row['data_cadastro']);
                         $dataCadastro = date('d/m/Y', $transDataCadastro);
-
                         echo "<tr>";
-                        echo "<td>" . sprintf('%03d', $row['cod']) . "</td>";
-                        echo "<td>" . $row['nome'] . "</td>";
-                        echo "<td>" . $row['marca'] . "</td>";
+                        echo "<form id='formPeca' action='edit.php' method='GET'>";
+                        $codRef = $_GET['edicao'];
+                        $equipRef = $_GET['opcao'];
+                        echo "<input type='hidden' name='edicao' value='$codRef'>";
+                        echo "<input type='hidden' name='opcao' value='$equipRef'>";
+                        echo "<input type='hidden' id='formCheck'  name='editor' value='check' disabled>";
+                        echo "<input type='hidden' id='formTrash'  name='editor' value='trash' disabled>";
+                        
+                        echo "<td>
+                        <input class='editField tdSmall' type='number' name='codigo' value='" .sprintf('%03d', $row['cod']) ."' disabled required></td>";
+                        echo "<td>
+                        <input class='editField' type='text' name='nome' value='" . $row['nome'] . "' disabled required></td>";
+                        echo "<td>
+                        <input class='editField' type='text' name='marca' value='" . $row['marca'] . "' disabled required></td>";
                         if($equipamento == 'resistencia'){
-                        echo "<td>" . $row['tipo'] . "</td>";
-                        echo "<td>" . $row['medidas'] ."</td>";
+                            echo "<td>
+                            <input class='editField tdSmall' type='text' name='tipo' value='" . $row['tipo'] . "' disabled required></td>";
+                            echo "<td>
+                            <input class='editField tdSmall' type='text' name='medidas' value='" . $row['medidas'] ."' disabled required></td>";
                         }
-                        echo "<td>" . $row['estq_min'] . "</td>";
-                        echo "<td>" . $row['saldo'] . "</td><br>";
+                        echo "<td>
+                        <input class='editField tdSmall' type='text' name='estoque_min' value='" . $row['estq_min'] . "' disabled required></td>";
+                        echo "<td class='tdSmall'>" . $row['saldo'] . "</td><br>";
                         echo "<td>". $dataCadastro ."</td>";
                         echo "</tr>";
                     }
@@ -122,12 +140,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 
                 // ESTRUTURA
                 if($num > 0){
-                    echo "<li>";
+                    echo "<li class='text-success'>";
                     echo "Adicionado: " . $row['alteracao'];
                     echo "<span><i class='bi bi-clock'></i> " . $hora ."</span>";
                     echo "</li>";
                 } else{
-                    echo "<li>";
+                    echo "<li class='text-danger'>";
                     echo "Retirado: " . $row['alteracao'];
                     echo "<span><i class='bi bi-clock'></i> " . $hora ."</span>";
                     echo "</li>";

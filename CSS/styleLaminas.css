@@ -20,6 +20,14 @@ main {
     background-color: #000000de;
 }
 
+.btn {
+    min-width: 100px;
+}
+
+.btnHome {
+    min-width: 0;
+}
+
 .btnDisab {
     border: 1px solid #dddddd;
     color: #808080;

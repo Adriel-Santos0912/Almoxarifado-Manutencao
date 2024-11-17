@@ -13,7 +13,7 @@
 </head>
 <body>
     <div id="floatbtn" class='float-start p-1'>
-        <a href="index.html" class='btn btn-outline-light px-3 py-2 mx-2 bi bi-house'></a>
+        <a href="index.html" class='btn btn-outline-light px-3 py-1 mx-2 bi bi-house'></a>
     </div>
     <header class="mb-5 d-flex bg-dark">
         <?php
@@ -29,7 +29,7 @@
             }
             echo " 
                 <form action='operation.php' method='POST'>
-                    <ul class='nav nav-tabs d-flex justify-content-center mt-2'>
+                    <ul class='nav nav-tabs d-flex justify-content-center'>
                         <li class='nav-item'>
                             <button class='nav-link " . $headDs2 . "' type='submit' name='btnAcess' value='ds2'>DS-2</button>
                         </li>
