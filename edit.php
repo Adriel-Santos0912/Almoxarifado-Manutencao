@@ -10,10 +10,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar'])) {
 
         $deletar = "DELETE FROM $equipamento WHERE cod = ?";
         $stmt = $conn->prepare($deletar);
+        $deletarLog = "DELETE FROM log WHERE cod = ?";
+        $stmtLog = $conn->prepare($deletarLog);
 
         if ($stmt) {
             $stmt->bind_param('i', $rastreabilidade);
+            $stmtLog->bind_param('i', $rastreabilidade);
             $stmt->execute();
+            $stmtLog->execute();
+
 
             if ($stmt->affected_rows > 0) {
                 echo "
@@ -25,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar'])) {
 
                 echo "
                 <script>
-                    document.querySelector('#select').submit(); // Envia o formulário de redirecionamento
+                    document.querySelector('#select').submit();
                 </script>
                 "; 
                 exit();
@@ -84,18 +89,56 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         $nome = $_GET['nome'];
         $marca = $_GET['marca'];
         $estoqueMin = $_GET['estoque_min'];
-    
-        $modificar = "UPDATE $equipamento SET 
+        if($equipamento == 'resistencia'){
+            $tipo = $_GET['tipo'];
+            $medidas = $_GET['medidas'];
+
+            $modificar = "UPDATE $equipamento SET 
+                        cod = ?, 
+                        nome = ?, 
+                        marca = ?, 
+                        tipo = ?,
+                        medidas = ?,
+                        estq_min = ? 
+                        WHERE cod = ?";
+
+            $modificarLog = "UPDATE log SET 
+                        cod = ?, 
+                        nome = ?, 
+                        marca = ?, 
+                        tipo = ?,
+                        medidas = ?
+                        WHERE cod = ?";
+                
+            $stmt = $conn->prepare($modificar);
+            $stmtLog = $conn->prepare($modificarLog);
+
+            $stmt->bind_param('issssii', $codigo, $nome, $marca, $tipo, $medidas, $estoqueMin, $rastreabilidade);
+            $stmtLog->bind_param('issssi', $codigo, $nome, $marca, $tipo, $medidas, $rastreabilidade);
+        } else {
+            $modificar = "UPDATE $equipamento SET 
                         cod = ?, 
                         nome = ?, 
                         marca = ?, 
                         estq_min = ? 
-                      WHERE cod = ?";
-        $stmt = $conn->prepare($modificar);
+                        WHERE cod = ?";
+
+            $modificarLog = "UPDATE log SET 
+                        cod = ?, 
+                        nome = ?, 
+                        marca = ?
+                        WHERE cod = ?";
+
+            $stmt = $conn->prepare($modificar);
+            $stmtLog = $conn->prepare($modificarLog);
+
+            $stmt->bind_param('issii', $codigo, $nome, $marca, $estoqueMin, $rastreabilidade);
+            $stmtLog->bind_param('issi', $codigo, $nome, $marca, $rastreabilidade);
+        }
     
         if ($stmt) {
-            $stmt->bind_param('issii', $codigo, $nome, $marca, $estoqueMin, $rastreabilidade);
             $stmt->execute();
+            $stmtLog->execute();
     
             if ($stmt->affected_rows > 0) {
                 header("Location: historico.php?edicao=" . urlencode($codigo) . "&opcao=" . urlencode($equipamento));

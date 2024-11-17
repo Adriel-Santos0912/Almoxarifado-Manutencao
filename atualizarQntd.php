@@ -80,5 +80,3 @@ echo "
 $stmt->close();
 $stmtLog->close();
 $conn->close();
-
-
