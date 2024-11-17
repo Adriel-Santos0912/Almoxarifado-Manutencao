@@ -47,14 +47,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar'])) {
             <meta charset='UTF-8'>
             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
             <link href='./bootstrap-5.3.3-dist/css/bootstrap.min.css' rel='stylesheet'>
+            <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css'>
             <title>Document</title>
         </head>
-        <body class='vh-100 d-flex justify-content-center align-items-center'>
+        <body class='vh-100 d-flex flex-column'>
+        <header class='bg-dark d-flex justify-content-start align-items-center p-2 mb-5' >
+            <form action='historico.php' method='GET' style='margin:0;'>
+            <button class='btn btn-outline-light btn-sm px-3 py-2 fs-6 bi bi-arrow-return-left' type='submit' style='height:41.6px;'></button>
+            <input type='hidden' name='edicao' value='$rastreabilidade'>
+            <input type='hidden' name='opcao' value='$equipamento'><br>
+            </form>
+        </header>
         <div class='d-flex justify-content-center flex-column align-items-center'>
             <form action='' method='POST'>
                 <h1 class=''>Digite a senha: </h1>
                 <div class='d-flex justify-content-center flex-column align-items-center'>
-                    <input class='form-control focus-ring' type='password' name='senha' required'>
+                    <input class='form-control' type='password' name='senha' required>
                     <input type='hidden' name='edicao' value='$rastreabilidade'>
                     <input type='hidden' name='opcao' value='$equipamento'><br>
                     <button class='btn btn-dark' type='submit' name='confirmar' value='1'>Confirmar</button>
@@ -107,9 +115,17 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             <meta charset='UTF-8'>
             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
             <link href='./bootstrap-5.3.3-dist/css/bootstrap.min.css' rel='stylesheet'>
+            <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css'>
             <title>Document</title>
         </head>
-        <body class='vh-100 d-flex justify-content-center align-items-center'>
+        <body class='vh-100 d-flex flex-column'>
+        <header class='bg-dark d-flex justify-content-start align-items-center p-2 mb-5'>
+            <form action='historico.php' method='GET'>
+            <button class='btn btn-outline-light btn-sm px-3 py-2 fs-6 bi bi-arrow-return-left' type='submit'></button>
+            <input type='hidden' name='edicao' value='$rastreabilidade'>
+            <input type='hidden' name='opcao' value='$equipamento'><br>
+            </form>
+        </header>
         <div class='d-flex justify-content-center flex-column align-items-center'>
             <form action='' method='POST'>
                 <h1 class=''>Digite a senha: </h1>
