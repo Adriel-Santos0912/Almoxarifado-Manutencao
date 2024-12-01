@@ -26,6 +26,7 @@ main{
 }
 
 .editField {
+    color: #000;
     border: none;
     outline: none;
     text-align: center;
@@ -77,4 +78,32 @@ span {
 .bi-clock::before {
     vertical-align: 0;
     font-size: small;
+}
+
+@media print {
+    .btn {
+        display: none;
+    }
+
+    header {
+        border: none;
+    }
+
+    table  {
+        border-collapse: collapse;
+    }
+
+    input {
+        background-color: transparent;
+    }
+
+    table th, td {
+        background-color: transparent;
+        width: 60px;
+    }
+
+    table th {
+        background-color: #202020;
+        color: #fff;
+    }
 }

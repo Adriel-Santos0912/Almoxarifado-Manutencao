@@ -51,7 +51,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
-                <th scope="col">Codigo</th>
+                <th scope="col" class="colCod">Codigo</th>
                 <th scope="col">Nome da Peça</th>
                 <th scope="col">Marca da Peça</th>
                 <?php

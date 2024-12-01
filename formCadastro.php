@@ -51,40 +51,34 @@
                     <input class="form-control form-control-lg" type="number" name="saldo" placeholder="Quantidade no estoque" required><br><br>
                 </div>          
                 <?php
-                    if($_SERVER["REQUEST_METHOD"] == "POST"){
-                        if($item == 'resistencia'){
-                        echo
-                        "
-                        <div class='col-xl-6 d-flex flex-column justify-content-start>
-                            <label for='tipo'>Tipo da Resistência: </label>
-                            <select class='shadow-none btn btn-secondary dropdown-toggle' name='tipo' required>
-                                <option value='' disabled selected></option>
-                                <option class='dropdown-item' value='X'>X</option>
-                                <option class='dropdown-item' value='ø'>ø</option>
-                            </select>
-                        </div>
-                        <div class='col-12 col-xl-6'>
-                            <label for='medida'>Medidas:</label><br>
-                            <input class=' form-control form-control-lg' type='text' name='medidas' placeholder='Ex: 2x15cm 1x30cm' required>
-                        </div>
-                        ";
-                        }   
-                    }
+                    if($item == 'resistencia'){
+                    echo
+                    "
+                    <div class='col-xl-6 d-flex flex-column justify-content-start>
+                        <label for='tipo'>Tipo da Resistência: </label>
+                        <select class='shadow-none btn btn-secondary dropdown-toggle' name='tipo' required>
+                            <option value='' disabled selected></option>
+                            <option class='dropdown-item' value='X'>X</option>
+                            <option class='dropdown-item' value='ø'>ø</option>
+                        </select>
+                    </div>
+                    <div class='col-12 col-xl-6'>
+                        <label for='medida'>Medidas:</label><br>
+                        <input class=' form-control form-control-lg' type='text' name='medidas' placeholder='Ex: 2x15cm 1x30cm' required>
+                    </div>
+                    ";
+                    }   
                 ?>              
                 <?php
-                    include('reconhecer.php');
-
-                    if($_SERVER["REQUEST_METHOD"] == "POST"){
-                        if($item == 'ds2'){
-                            echo "<input type='hidden' value='ds2' name='maq'>";
-                        } else if($item == 'k18') {
-                            echo "<input type='hidden' value='k18' name='maq'>";
-                        } else if($item == 'resistencia') {
-                            echo "<input type='hidden' value='resistencia' name='maq'>";
-                        } else {
-                            echo "ERRO! Valor invalido";
-                        }   
-                    }
+                    if($item == 'ds2'){
+                        echo "<input type='hidden' value='ds2' name='maq'>";
+                    } else if($item == 'k18') {
+                        echo "<input type='hidden' value='k18' name='maq'>";
+                    } else if($item == 'resistencia') {
+                        echo "<input type='hidden' value='resistencia' name='maq'>";
+                    } else {
+                        echo "ERRO! Valor invalido";
+                    }   
                 ?>
                 <div class='d-flex justify-content-center mt-5' id="enviar">
                     <input class="btn btn-info py-2 ps-5 pe-5" type="submit" value="Enviar">

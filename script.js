@@ -4,6 +4,10 @@ let formBtnTrash = document.getElementById('formTrash');
 
 btnEdit.addEventListener('click', editar)
 
+window.addEventListener('load', function(){
+    document.getElementById('fieldPass').focus();
+});
+
 function editar(){
     let fieldEdit = document.querySelectorAll('.editField');
     let btnCheck = document.getElementById('editCheck');
@@ -52,3 +56,4 @@ document.querySelectorAll('.editField').forEach(fieldEdit => {
         btnCheck.disabled = false;
     })
 })
+

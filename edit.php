@@ -67,13 +67,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar'])) {
             <form action='' method='POST'>
                 <h1 class=''>Digite a senha: </h1>
                 <div class='d-flex justify-content-center flex-column align-items-center'>
-                    <input class='form-control' type='password' name='senha' required>
+                    <input id='fieldPass' class='form-control' type='password' name='senha' required>
                     <input type='hidden' name='edicao' value='$rastreabilidade'>
                     <input type='hidden' name='opcao' value='$equipamento'><br>
                     <button class='btn btn-dark' type='submit' name='confirmar' value='1'>Confirmar</button>
                 </div>
             </form>
         </div>
+
+        <script>
+            window.addEventListener('load', function(){
+                document.getElementById('fieldPass').focus();
+            });
+        </script>
         </body>
         </html>
         ";
@@ -173,13 +179,19 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             <form action='' method='POST'>
                 <h1 class=''>Digite a senha: </h1>
                 <div class='d-flex justify-content-center flex-column align-items-center'>
-                    <input class='form-control' type='password' name='senha' required>
+                    <input id='fieldPass' class='form-control' type='password' name='senha' required>
                     <input type='hidden' name='edicao' value='$rastreabilidade'>
                     <input type='hidden' name='opcao' value='$equipamento'><br>
                     <button class='btn btn-dark' type='submit' name='confirmar' value='1'>Confirmar</button>
                 </div>
             </form>
         </div>
+
+        <script>
+            window.addEventListener('load', function(){
+                document.getElementById('fieldPass').focus();
+            });
+        </script>
         </body>
         </html>
         ";
