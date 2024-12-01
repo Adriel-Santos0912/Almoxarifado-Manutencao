@@ -28,19 +28,22 @@
                 <!-- o Código da peça pode incluir Letras e Numeros -->
                 <div class="col-12 col-xl-6">
                     <label for="codigo">Código:</label><br>
-                    <input class=" form-control form-control-lg" type="number" name="codigo" placeholder="Código da peça" required><br><br>
+                    <input class=" form-control form-control-lg" type="text" name="codigo" placeholder="Código da peça" required><br><br>
                 </div>
 
                 <div class="col-12 col-xl-6">
                     <label for="marca">Marca da Peça:</label><br>
                     <input class=" form-control form-control-lg" type="text" name="marca" placeholder="Insira a marca da peça aqui" required><br><br>
                 </div>
-
-                <div class="col-12">
-                    <label for="peca">Nome da Peça:</label><br>
-                    <input class="form-control form-control-lg" type="text" name="peca" placeholder="Insira o nome da peça aqui" required><br><br> 
-                </div>
-
+                <?php
+                if($item != 'resistencia'){
+                    echo "
+                    <div class='col-12'>
+                        <label for='peca'>Nome da Peça:</label><br>
+                        <input class='form-control form-control-lg' type='text' name='peca' placeholder='Insira o nome da peça aqui' required><br><br> 
+                    </div>";
+                }
+                ?>
                 <div class="col-12 col-xl-6">
                     <label for="estoque">Estoque Minimo:</label><br>
                     <input class="form-control form-control-lg" type="number" name="estoque" placeholder="Minimo de estoque" required><br><br>

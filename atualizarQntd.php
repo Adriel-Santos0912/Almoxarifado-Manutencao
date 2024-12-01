@@ -12,7 +12,7 @@ if(isset($_POST['increment'])){
 }
 
 if($bdSelect == 'resistencia'){
-    $insSQL = "SELECT cod, nome, marca, medidas, saldo, tipo FROM $bdSelect WHERE cod = '$codigo'";
+    $insSQL = "SELECT cod, marca, medidas, saldo, tipo FROM $bdSelect WHERE cod = '$codigo'";
 } else {
     $insSQL = "SELECT cod, nome, marca, saldo FROM $bdSelect WHERE cod = '$codigo'";
 }
@@ -21,7 +21,9 @@ $res = $conn->query($insSQL);
 
 if($res->num_rows > 0){
     while($row = $res->fetch_assoc()){
-        $namePeca = $row['nome'];
+        if($bdSelect != 'resistencia'){
+            $namePeca = $row['nome'];
+        }
         $marca = $row['marca'];
         $saldoFinal = $row['saldo'];
         $saldoComeco = $row['saldo'];
@@ -56,8 +58,8 @@ date_default_timezone_set('America/Sao_Paulo');
 $dataModificacao = date('Y-m-d H:i:s');
 
 if($bdSelect == 'resistencia'){
-    $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_comeco, saldo_final, equipamento, data_modificacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmtLog->bind_param("isssssiiss", $codigo, $namePeca, $marca, $medidas, $tipo, $valAlterado, $saldoComeco, $saldoFinal, $bdSelect, $dataModificacao);
+    $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_comeco, saldo_final, equipamento, data_modificacao) VALUES (?, NULL, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmtLog->bind_param("issssiiss", $codigo, $marca, $medidas, $tipo, $valAlterado, $saldoComeco, $saldoFinal, $bdSelect, $dataModificacao);
     $stmtLog->execute();
 } else {
     $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_comeco, saldo_final, equipamento, data_modificacao) VALUES (?, ?, ?, NULL, NULL, ?, ?, ?, ?, ?)");

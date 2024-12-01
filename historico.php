@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
     // SELECT que pegará todos os dados da tabela do equipamento específico no SQL  -- Tabela no topo da página
     if($equipamento == 'resistencia'){
-        $espelho = "SELECT cod, nome, marca, medidas, tipo, estq_min, saldo, data_cadastro from $equipamento WHERE cod= '$codigo'";
+        $espelho = "SELECT cod, marca, medidas, tipo, estq_min, saldo, data_cadastro from $equipamento WHERE cod= '$codigo'";
     } else {
         $espelho = "SELECT cod, nome, marca, estq_min, saldo, data_cadastro from $equipamento WHERE cod= '$codigo'";
     }
@@ -52,7 +52,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         <thead class="table-dark">
             <tr>
                 <th scope="col" class="colCod">Codigo</th>
-                <th scope="col">Nome da Peça</th>
+                <?php
+                    if($equipamento != 'resistencia'){
+                        echo "<th scope='col'>Nome da Peça</th>"; 
+                    }
+                ?>
                 <th scope="col">Marca da Peça</th>
                 <?php
                     if($equipamento == 'resistencia'){
@@ -82,8 +86,10 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                         
                         echo "<td>
                         <input class='editField tdSmall' type='number' name='codigo' value='" .sprintf('%03d', $row['cod']) ."' disabled required></td>";
-                        echo "<td>
-                        <input class='editField' type='text' name='nome' value='" . $row['nome'] . "' disabled required></td>";
+                        if($equipamento != 'resistencia'){
+                            echo "<td>
+                            <input class='editField' type='text' name='nome' value='" . $row['nome'] . "' disabled required></td>";
+                        }
                         echo "<td>
                         <input class='editField' type='text' name='marca' value='" . $row['marca'] . "' disabled required></td>";
                         if($equipamento == 'resistencia'){

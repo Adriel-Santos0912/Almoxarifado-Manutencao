@@ -50,7 +50,11 @@
             <thead class="table-dark">
                 <tr>
                     <th scope="col">Codigo</th>
-                    <th scope="col">Nome da Peça</th>
+                    <?php
+                        if($item != 'resistencia'){
+                            echo "<th scope='col'>Nome da Peça</th>"; 
+                        }
+                    ?>
                     <th scope="col">Marca da Peça</th>
                     <?php
                         if($item == 'resistencia'){
@@ -71,7 +75,7 @@
                 if($item == 'ds2' || $item == 'k18'){
                     $insSQL = "SELECT cod, nome, marca, estq_min, saldo FROM $item";
                 } else if($item == 'resistencia') {
-                    $insSQL = "SELECT cod, nome, tipo, marca, estq_min, medidas, saldo FROM $item";
+                    $insSQL = "SELECT cod, tipo, marca, estq_min, medidas, saldo FROM $item";
                 }
 
                 $res = $conn->query($insSQL);
@@ -113,7 +117,6 @@
                         }
                         if($item == 'resistencia'){
                             echo "<td>" . sprintf('%03d', $row['cod']) . "</td>";
-                            echo "<td class='linhaNome'>" . $row['nome'] . "</td>";
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['tipo'] . "</td>";
                             echo "<td>" . $row['medidas'] ."</td>";

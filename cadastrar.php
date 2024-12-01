@@ -24,7 +24,9 @@
                     if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $item = $_POST['maq'];
                         $codigo = $_POST['codigo'];
-                        $namePeca = $_POST['peca'];
+                        if($item != 'resistencia'){
+                            $namePeca = $_POST['peca'];
+                        }
                         $saldo = $_POST['saldo'];
                         $marca = $_POST['marca'];
                         $estqMin = $_POST['estoque'];
@@ -36,26 +38,32 @@
                         $dataCadastro = date('Y-m-d');
                 
                         if($item == 'resistencia') {
-                            $stmt = $conn->prepare("INSERT INTO $item(cod, nome, marca, tipo, medidas, estq_min, saldo, data_cadastro) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-                            $stmt->bind_param("issssiis", $codigo, $namePeca, $marca, $tipoRes, $medidas, $estqMin, $saldo, $dataCadastro);
+                            $stmt = $conn->prepare("INSERT INTO $item(cod, marca, tipo, medidas, estq_min, saldo, data_cadastro) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                            $stmt->bind_param("isssiis", $codigo, $marca, $tipoRes, $medidas, $estqMin, $saldo, $dataCadastro);
                         } else {
                             $stmt = $conn->prepare("INSERT INTO $item(cod, nome, marca, estq_min, saldo, data_cadastro) VALUES (?, ?, ?, ?, ?, ?)");
                             $stmt->bind_param("issiis", $codigo, $namePeca, $marca , $estqMin, $saldo, $dataCadastro);
                         }
 
                         if($stmt->execute()){
-                            echo '
-                                    <h3 class="text-center border-bottom">Descrição do item</h3>
-                                    <p>Código: ' . $codigo . '</p>
-                                    <p>Peça: ' . $namePeca . '</p>
-                                    <p>Marca: ' . $marca . '</p>
-                                ';
                             if($item == 'resistencia'){
-                                echo '<p>Tipo Resistência: ' . $tipoRes . '</p>';
-                                echo '<p>Medidas: ' . $medidas . '</p>';
+                                echo "
+                                <h3 class='text-center border-bottom'>Descrição do item</h3>
+                                <p>Código: $codigo</p>
+                                <p>Marca: $marca</p>
+                                <p>Tipo Resistência: $tipoRes</p>
+                                <p>Medidas: $medidas</p>
+                                <p>Estoque Minimo: $estqMin</p>
+                                <p>Quantidade: $saldo</p>";
+                            } else {
+                                echo "
+                                <h3 class='text-center border-bottom'>Descrição do item</h3>
+                                <p>Código: $codigo</p>
+                                <p>Peça: $namePeca</p>
+                                <p>Marca: $marca</p>
+                                <p>Estoque Minimo: $estqMin</p>
+                                <p>Quantidade: $saldo</p>";
                             }
-                            echo '<p>Estoque Minimo: ' . $estqMin . '</p>';
-                            echo '<p>Quantidade: ' . $saldo . '</p>';
 
                             echo "
                             <form action='operation.php' method='POST'>

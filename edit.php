@@ -2,7 +2,7 @@
 include('conexao.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar'])) {
-    $senhaCorreta = '1234'; 
+    $senhaCorreta = 112469; 
 
     if (isset($_POST['senha']) && $_POST['senha'] == $senhaCorreta) {
         $rastreabilidade = $_POST['edicao'];
@@ -92,7 +92,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     
     if(isset($_GET['editor']) && $_GET['editor'] == 'check'){
         $codigo = $_GET['codigo'];
-        $nome = $_GET['nome'];
+        if($equipamento != 'resistencia'){
+            $nome = $_GET['nome'];
+        }
         $marca = $_GET['marca'];
         $estoqueMin = $_GET['estoque_min'];
         if($equipamento == 'resistencia'){
@@ -101,7 +103,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
             $modificar = "UPDATE $equipamento SET 
                         cod = ?, 
-                        nome = ?, 
                         marca = ?, 
                         tipo = ?,
                         medidas = ?,
@@ -110,7 +111,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
             $modificarLog = "UPDATE log SET 
                         cod = ?, 
-                        nome = ?, 
                         marca = ?, 
                         tipo = ?,
                         medidas = ?
@@ -119,8 +119,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $stmt = $conn->prepare($modificar);
             $stmtLog = $conn->prepare($modificarLog);
 
-            $stmt->bind_param('issssii', $codigo, $nome, $marca, $tipo, $medidas, $estoqueMin, $rastreabilidade);
-            $stmtLog->bind_param('issssi', $codigo, $nome, $marca, $tipo, $medidas, $rastreabilidade);
+            $stmt->bind_param('isssii', $codigo, $marca, $tipo, $medidas, $estoqueMin, $rastreabilidade);
+            $stmtLog->bind_param('isssi', $codigo, $marca, $tipo, $medidas, $rastreabilidade);
         } else {
             $modificar = "UPDATE $equipamento SET 
                         cod = ?, 
