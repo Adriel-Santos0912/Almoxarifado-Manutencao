@@ -49,7 +49,7 @@
         <table class="table table-striped table-bordered">
             <thead class="table-dark">
                 <tr>
-                    <th scope="col">Codigo</th>
+                    <th scope="col">Código</th>
                     <?php
                         if($item != 'resistencia'){
                             echo "<th scope='col'>Nome da Peça</th>"; 
@@ -116,7 +116,7 @@
                                 </form>";
                         }
                         if($item == 'resistencia'){
-                            echo "<td>" . sprintf('%03d', $row['cod']) . "</td>";
+                            echo "<td>" . $row['cod'] . "</td>";
                             echo "<td>" . $row['marca'] . "</td>";
                             echo "<td>" . $row['tipo'] . "</td>";
                             echo "<td>" . $row['medidas'] ."</td>";

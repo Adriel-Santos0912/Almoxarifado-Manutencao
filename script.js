@@ -14,7 +14,6 @@ function editar(){
     let campoDel = document.getElementById('editDel');
     let formBtnCheck = document.getElementById('formCheck');
 
-    
     fieldEdit.forEach(fieldEdit => {
         if (fieldEdit.disabled) {
             btnEdit.style.display = 'none';

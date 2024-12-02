@@ -85,7 +85,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                         echo "<input type='hidden' id='formTrash'  name='editor' value='trash' disabled>";
                         
                         echo "<td>
-                        <input class='editField tdSmall' type='number' name='codigo' value='" .sprintf('%03d', $row['cod']) ."' disabled required></td>";
+                        <input class='editField tdSmall' type='text' name='codigo' value='" . $row['cod'] ."' disabled required></td>";
                         if($equipamento != 'resistencia'){
                             echo "<td>
                             <input class='editField' type='text' name='nome' value='" . $row['nome'] . "' disabled required></td>";

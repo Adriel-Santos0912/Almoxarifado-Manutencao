@@ -39,10 +39,10 @@
                 
                         if($item == 'resistencia') {
                             $stmt = $conn->prepare("INSERT INTO $item(cod, marca, tipo, medidas, estq_min, saldo, data_cadastro) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                            $stmt->bind_param("isssiis", $codigo, $marca, $tipoRes, $medidas, $estqMin, $saldo, $dataCadastro);
+                            $stmt->bind_param("ssssiis", $codigo, $marca, $tipoRes, $medidas, $estqMin, $saldo, $dataCadastro);
                         } else {
                             $stmt = $conn->prepare("INSERT INTO $item(cod, nome, marca, estq_min, saldo, data_cadastro) VALUES (?, ?, ?, ?, ?, ?)");
-                            $stmt->bind_param("issiis", $codigo, $namePeca, $marca , $estqMin, $saldo, $dataCadastro);
+                            $stmt->bind_param("sssiis", $codigo, $namePeca, $marca , $estqMin, $saldo, $dataCadastro);
                         }
 
                         if($stmt->execute()){

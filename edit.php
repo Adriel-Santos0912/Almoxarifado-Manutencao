@@ -14,8 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar'])) {
         $stmtLog = $conn->prepare($deletarLog);
 
         if ($stmt) {
-            $stmt->bind_param('i', $rastreabilidade);
-            $stmtLog->bind_param('i', $rastreabilidade);
+            $stmt->bind_param('s', $rastreabilidade);
+            $stmtLog->bind_param('s', $rastreabilidade);
             $stmt->execute();
             $stmtLog->execute();
 
@@ -119,8 +119,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $stmt = $conn->prepare($modificar);
             $stmtLog = $conn->prepare($modificarLog);
 
-            $stmt->bind_param('isssii', $codigo, $marca, $tipo, $medidas, $estoqueMin, $rastreabilidade);
-            $stmtLog->bind_param('isssi', $codigo, $marca, $tipo, $medidas, $rastreabilidade);
+            $stmt->bind_param('ssssis', $codigo, $marca, $tipo, $medidas, $estoqueMin, $rastreabilidade);
+            $stmtLog->bind_param('sssss', $codigo, $marca, $tipo, $medidas, $rastreabilidade);
         } else {
             $modificar = "UPDATE $equipamento SET 
                         cod = ?, 
@@ -138,8 +138,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $stmt = $conn->prepare($modificar);
             $stmtLog = $conn->prepare($modificarLog);
 
-            $stmt->bind_param('issii', $codigo, $nome, $marca, $estoqueMin, $rastreabilidade);
-            $stmtLog->bind_param('issi', $codigo, $nome, $marca, $rastreabilidade);
+            $stmt->bind_param('sssis', $codigo, $nome, $marca, $estoqueMin, $rastreabilidade);
+            $stmtLog->bind_param('ssss', $codigo, $nome, $marca, $rastreabilidade);
         }
     
         if ($stmt) {

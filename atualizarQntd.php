@@ -4,6 +4,9 @@ include('conexao.php');
 $bdSelect = $_POST['bd'];
 $saldo = $_POST['vfSaldo'];
 $qntdIncr = $_POST['qntdAlter'];
+$checkLog = 0;
+date_default_timezone_set('America/Sao_Paulo');
+$dataModificacao = date('Y-m-d H:i:s');
 
 if(isset($_POST['increment'])){
     $codigo = $_POST['increment'];
@@ -40,31 +43,34 @@ if(isset($_POST['decrement'])){
         $valAlterado = "-" . $qntdIncr;
 
         $stmt = $conn->prepare("UPDATE $bdSelect SET saldo = saldo - $qntdIncr WHERE cod = ?");
-        $stmt->bind_param("i", $codigo);
-        $stmt->execute(); 
+        $stmt->bind_param("s", $codigo);
+        $stmt->execute();
+        $checkLog = 1;
     } else {
-        echo "<script> alert('SALDO ZERADO OU INSUFICIENTE!" . '\n' . "Operação não realizada') </script>";
+        echo "<script> alert('Saldo zerado ou insuficiente!" . '\n' . "Operação não realizada') </script>";
     }
 } else if(isset($_POST['increment'])) {
         $saldoFinal += $qntdIncr;
         $valAlterado = "+". $qntdIncr;
 
         $stmt = $conn->prepare("UPDATE $bdSelect SET saldo = saldo + $qntdIncr WHERE cod = ?");  
-        $stmt->bind_param("i", $codigo);
-        $stmt->execute(); 
+        $stmt->bind_param("s", $codigo);
+        $stmt->execute();
+        $checkLog = 1;
 }
 
-date_default_timezone_set('America/Sao_Paulo');
-$dataModificacao = date('Y-m-d H:i:s');
+if($checkLog == 1){
+    if($bdSelect == 'resistencia'){
+        $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_comeco, saldo_final, equipamento, data_modificacao) VALUES (?, NULL, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmtLog->bind_param("sssssiiss", $codigo, $marca, $medidas, $tipo, $valAlterado, $saldoComeco, $saldoFinal, $bdSelect, $dataModificacao);
+        $stmtLog->execute();
+    } else {
+        $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_comeco, saldo_final, equipamento, data_modificacao) VALUES (?, ?, ?, NULL, NULL, ?, ?, ?, ?, ?)");
+        $stmtLog->bind_param("ssssiiss", $codigo, $namePeca, $marca, $valAlterado, $saldoComeco, $saldoFinal, $bdSelect, $dataModificacao);
+        $stmtLog->execute();
+    }
 
-if($bdSelect == 'resistencia'){
-    $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_comeco, saldo_final, equipamento, data_modificacao) VALUES (?, NULL, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmtLog->bind_param("issssiiss", $codigo, $marca, $medidas, $tipo, $valAlterado, $saldoComeco, $saldoFinal, $bdSelect, $dataModificacao);
-    $stmtLog->execute();
-} else {
-    $stmtLog = $conn->prepare("INSERT INTO log(cod, nome, marca, medidas, tipo, alteracao, saldo_comeco, saldo_final, equipamento, data_modificacao) VALUES (?, ?, ?, NULL, NULL, ?, ?, ?, ?, ?)");
-    $stmtLog->bind_param("isssiiss", $codigo, $namePeca, $marca, $valAlterado, $saldoComeco, $saldoFinal, $bdSelect, $dataModificacao);
-    $stmtLog->execute();
+    $checkLog = 0;
 }
 
 echo "
