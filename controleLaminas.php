@@ -5,14 +5,18 @@ if(isset($_GET['condicao'])){
     $maqCond = $_GET['condicao'];
     $action = substr($maqCond, 0, 4);
     $number = substr($maqCond, 4, 3);
+
+    // NOVA = 0
+    // VIRA = 1
+
     if($action == 'nova' && $number == 426){
-        $updSQL = 'UPDATE lamina SET lamina426 = 0 WHERE id = 1';
+        $updSQL = 'UPDATE lamina SET lamina426 = 0 WHERE id = 1'; // CLICAR EM NOVA, O VALOR É ATUALIZADO PARA 0 ONDE O ID FOR = 1 (QUE NO CASO É O UNICO ID)
     } else if($action == 'nova' && $number == 427) {
-        $updSQL = 'UPDATE lamina SET lamina427 = 0 WHERE id = 1';
+        $updSQL = 'UPDATE lamina SET lamina427 = 0 WHERE id = 1'; 
     }
     
     if($action == 'vira' && $number == 426) {
-        $updSQL = 'UPDATE lamina SET lamina426 = 1 WHERE id = 1';
+        $updSQL = 'UPDATE lamina SET lamina426 = 1 WHERE id = 1'; // CLICAR EM VIRA, O VALOR É ATUALIZADO PARA 1 ONDE O ID FOR = 1 (QUE NO CASO É O UNICO ID)
     } else if($action == 'vira' && $number == 427) {
         $updSQL = 'UPDATE lamina SET lamina427 = 1 WHERE id = 1';
     }
@@ -40,6 +44,9 @@ if($selecionar->num_rows > 0){
             $vl427 = "btn-success";
         }
     }
+} else {
+    $forceInject = 'INSERT INTO lamina (lamina426, lamina427) VALUES (0, 0)';
+    $queryInject = $conn->query($forceInject);
 }
 ?>
 
